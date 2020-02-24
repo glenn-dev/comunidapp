@@ -1,24 +1,22 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+# PROJECT_NAME
 
-Things you may want to cover:
+* El proyecto es un asistente para la administracion de condominios. Todo el desarrollo esta enmarcado la aplicacion de conceptos y conocimientos adquiridos en la academia Desafio Latam (G-28)
 
-* Ruby version
+* Ruby version: 2.6.0
 
-* System dependencies
+* Rails version: 5.2.4.1
 
-* Configuration
+* Base de datos Postgres.
 
-* Database creation
+* Se utilizo la herramienta Trello para la ejecucion del proyecto.
+[Tablero Trello] (https://trello.com/b/RIZueiph/g-28)
 
-* Database initialization
+* Para visualizar el landing page ingrese a:
+* [Heroku] (https://whispering-caverns-15460.herokuapp.com/)
 
-* How to run the test suite
+* Diagrama logico de la base de datos (en desarrollo).
+![alt text][logic]
 
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+[logic]: /diagrama_logico.png

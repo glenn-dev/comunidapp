@@ -1,0 +1,34 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Num dep:</strong>
+  <%= @department.num_dep %>
+</p>
+
+<p>
+  <strong>Floor:</strong>
+  <%= @department.floor %>
+</p>
+
+<p>
+  <strong>Defaulting:</strong>
+  <%= @department.defaulting %>
+</p>
+
+<p>
+  <strong>Habitability:</strong>
+  <%= @department.habitability %>
+</p>
+
+<p>
+  <strong>Collection:</strong>
+  <%= @department.collection %>
+</p>
+
+<p>
+  <strong>Building:</strong>
+  <%= @department.building %>
+</p>
+
+<%= link_to 'Edit', edit_department_path(@department) %> |
+<%= link_to 'Back', departments_path %>

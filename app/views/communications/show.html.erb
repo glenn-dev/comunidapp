@@ -1,0 +1,34 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Num release:</strong>
+  <%= @communication.num_release %>
+</p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @communication.title %>
+</p>
+
+<p>
+  <strong>Content:</strong>
+  <%= @communication.content %>
+</p>
+
+<p>
+  <strong>Status:</strong>
+  <%= @communication.status %>
+</p>
+
+<p>
+  <strong>Document:</strong>
+  <%= @communication.document %>
+</p>
+
+<p>
+  <strong>Building:</strong>
+  <%= @communication.building %>
+</p>
+
+<%= link_to 'Edit', edit_communication_path(@communication) %> |
+<%= link_to 'Back', communications_path %>

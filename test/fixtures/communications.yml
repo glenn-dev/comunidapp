@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  num_release: 1
+  title: MyString
+  content: MyString
+  status: false
+  document: MyString
+  building: one
+
+two:
+  num_release: 1
+  title: MyString
+  content: MyString
+  status: false
+  document: MyString
+  building: two

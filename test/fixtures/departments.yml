@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  num_dep: MyString
+  floor: 1
+  defaulting: false
+  habitability: false
+  collection: 1.5
+  building: one
+
+two:
+  num_dep: MyString
+  floor: 1
+  defaulting: false
+  habitability: false
+  collection: 1.5
+  building: two

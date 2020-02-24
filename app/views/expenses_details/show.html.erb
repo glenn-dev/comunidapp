@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Amount:</strong>
+  <%= @expenses_detail.amount %>
+</p>
+
+<p>
+  <strong>Concept:</strong>
+  <%= @expenses_detail.concept %>
+</p>
+
+<%= link_to 'Edit', edit_expenses_detail_path(@expenses_detail) %> |
+<%= link_to 'Back', expenses_details_path %>

@@ -1,0 +1,44 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Num bill:</strong>
+  <%= @bill.num_bill %>
+</p>
+
+<p>
+  <strong>Total:</strong>
+  <%= @bill.total %>
+</p>
+
+<p>
+  <strong>Issue date:</strong>
+  <%= @bill.issue_date %>
+</p>
+
+<p>
+  <strong>Status:</strong>
+  <%= @bill.status %>
+</p>
+
+<p>
+  <strong>Bill doc:</strong>
+  <%= @bill.bill_doc %>
+</p>
+
+<p>
+  <strong>Paid doc:</strong>
+  <%= @bill.paid_doc %>
+</p>
+
+<p>
+  <strong>Expenses detail:</strong>
+  <%= @bill.expenses_detail %>
+</p>
+
+<p>
+  <strong>Department:</strong>
+  <%= @bill.department %>
+</p>
+
+<%= link_to 'Edit', edit_bill_path(@bill) %> |
+<%= link_to 'Back', bills_path %>

@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Expenses Details</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Amount</th>
+      <th>Concept</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @expenses_details.each do |expenses_detail| %>
+      <tr>
+        <td><%= expenses_detail.amount %></td>
+        <td><%= expenses_detail.concept %></td>
+        <td><%= link_to 'Show', expenses_detail %></td>
+        <td><%= link_to 'Edit', edit_expenses_detail_path(expenses_detail) %></td>
+        <td><%= link_to 'Destroy', expenses_detail, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Expenses Detail', new_expenses_detail_path %>

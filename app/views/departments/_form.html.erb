@@ -38,7 +38,7 @@
 
   <div class="field">
     <%= form.label :building_id %>
-    <%= form.text_field :building_id %>
+    <%= form.select(:building_id, options_for_select(@building_array), prompt: 'Seleccione edificio') %>
   </div>
 
   <div class="actions">

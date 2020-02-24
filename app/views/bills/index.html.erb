@@ -2,7 +2,7 @@
 
 <h1>Bills</h1>
 
-<table>
+<table class="table">
   <thead>
     <tr>
       <th>Num bill</th>
@@ -23,8 +23,16 @@
         <td><%= bill.total %></td>
         <td><%= bill.issue_date %></td>
         <td><%= bill.status %></td>
-        <td><%= bill.bill_doc %></td>
-        <td><%= bill.paid_doc %></td>
+        <% if bill.bill_doc.attached? %>
+          <td><%= image_tag bill.bill_doc %></td>
+        <% else %>
+          <td>No existe documento</td>
+        <% end %>
+        <% if bill.voucher_doc.attached? %>
+          <td><%= image_tag bill.voucher_doc %></td>
+        <% else %>
+          <td>No existe documento</td>
+        <% end %>
         <td><%= bill.department %></td>
         <td><%= link_to 'Show', bill %></td>
         <td><%= link_to 'Edit', edit_bill_path(bill) %></td>

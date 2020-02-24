@@ -21,8 +21,12 @@
 </p>
 
 <p>
-  <strong>Document:</strong>
-  <%= @communication.document %>
+  <strong>Release:</strong>
+  <% if @communication.release_doc.attached? %>
+    <td><%= image_tag @communication.release_doc %></td>
+  <% else %>
+    <p>No existe documento</p>
+  <% end %>
 </p>
 
 <p>

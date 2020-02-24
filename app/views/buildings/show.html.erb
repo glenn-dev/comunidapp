@@ -11,8 +11,12 @@
 </p>
 
 <p>
-  <strong>Building img:</strong>
-  <%= @building.building_img %>
+  <strong>Logo:</strong>
+  <% if @building.logo.attached? %>
+    <td><%= image_tag @building.logo %></td>
+  <% else %>
+  <i class="far fa-building"></i>
+  <% end %>
 </p>
 
 <%= link_to 'Edit', edit_building_path(@building) %> |

@@ -1,13 +1,13 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Buildings</h1>
+<h1>Edificios</h1>
 
-<table>
+<table class="table">
   <thead>
     <tr>
-      <th>Name</th>
-      <th>Address</th>
-      <th>Building img</th>
+      <th></th>
+      <th>Nombre</th>
+      <th>Direccion</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -15,12 +15,15 @@
   <tbody>
     <% @buildings.each do |building| %>
       <tr>
-        <td><%= building.name %></td>
-        <td><%= building.address %></td>
-        <td><%= building.building_img %></td>
-        <td><%= link_to 'Show', building %></td>
-        <td><%= link_to 'Edit', edit_building_path(building) %></td>
-        <td><%= link_to 'Destroy', building, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% if building.logo.attached? %>
+          <td><%= image_tag building.logo, class: 'index_img img-thumbnail' %></td>
+        <% else %>
+          <td><i class="far fa-building fa-3x img-thumbnail"></i></td>
+        <% end %>
+        <td class="align-middle"><%= link_to "#{building.name}", building, class:'btn btn-outline-info btn-lg btn-block' %></td>
+        <td class="align-middle"><%= building.address %></td>
+        <td class="align-middle"><%= link_to 'Edit', edit_building_path(building), class:'btn btn-outline-primary btn-sm' %></td>
+        <td class="align-middle"><%= link_to 'Destroy', building, method: :delete, data: { confirm: 'Are you sure?' }, class:'btn btn-outline-danger btn-sm' %></td>
       </tr>
     <% end %>
   </tbody>

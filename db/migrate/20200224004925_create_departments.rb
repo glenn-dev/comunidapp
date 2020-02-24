@@ -2,7 +2,7 @@ class CreateDepartments < ActiveRecord::Migration[5.2]
   def change
     create_table :departments do |t|
       t.string :num_dep
-      t.integer :floor
+      t.string :floor
       t.boolean :defaulting
       t.boolean :habitability
       t.float :collection

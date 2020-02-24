@@ -21,13 +21,21 @@
 </p>
 
 <p>
-  <strong>Bill doc:</strong>
-  <%= @bill.bill_doc %>
+  <strong>Boleta:</strong>
+  <% if @bill.bill_doc.attached? %>
+    <td><%= image_tag @bill.bill_doc %></td>
+  <% else %>
+    <p>No existe documento</p>
+  <% end %>
 </p>
 
 <p>
-  <strong>Paid doc:</strong>
-  <%= @bill.paid_doc %>
+  <strong>Voucher de pago:</strong>
+  <% if @bill.voucher_doc.attached? %>
+    <td><%= image_tag @bill.voucher_doc %></td>
+  <% else %>
+    <p>No existe documento</p>
+  <% end %>
 </p>
 
 <p>

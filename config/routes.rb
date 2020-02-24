@@ -4,7 +4,8 @@ Rails.application.routes.draw do
   resources :expenses_details
   resources :bills
   devise_for :users, controllers: {
-    sessions: 'users/sessions'
+    sessions: 'users/sessions',
+    registrations: 'users/registrations'
   }
 
   resources :concepts

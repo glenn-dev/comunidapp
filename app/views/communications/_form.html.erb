@@ -32,13 +32,13 @@
   </div>
 
   <div class="field">
-    <%= form.label :document %>
-    <%= form.text_field :document %>
+    <%= form.label :release_doc %>
+    <%= form.file_field :release_doc %>
   </div>
 
   <div class="field">
     <%= form.label :building_id %>
-    <%= form.text_field :building_id %>
+    <%= form.select(:building_id, options_for_select(@building_array), prompt: 'Seleccione edificio') %>
   </div>
 
   <div class="actions">

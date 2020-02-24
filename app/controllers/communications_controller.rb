@@ -69,6 +69,6 @@ class CommunicationsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def communication_params
-      params.require(:communication).permit(:num_release, :title, :content, :status, :document, :building_id)
+      params.require(:communication).permit(:num_release, :title, :content, :status, :release_doc, :building_id)
     end
 end

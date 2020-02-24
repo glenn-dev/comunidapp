@@ -22,7 +22,11 @@
         <td><%= communication.title %></td>
         <td><%= communication.content %></td>
         <td><%= communication.status %></td>
-        <td><%= communication.document %></td>
+        <% if communication.release_doc.attached? %>
+        <td><%= communication.release_doc %></td>
+        <% else %>
+        <td>No existe documento</td>
+        <% end %>
         <td><%= communication.building %></td>
         <td><%= link_to 'Show', communication %></td>
         <td><%= link_to 'Edit', edit_communication_path(communication) %></td>

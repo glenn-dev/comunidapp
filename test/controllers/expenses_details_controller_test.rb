@@ -17,7 +17,7 @@ class ExpensesDetailsControllerTest < ActionDispatch::IntegrationTest
 
   test "should create expenses_detail" do
     assert_difference('ExpensesDetail.count') do
-      post expenses_details_url, params: { expenses_detail: { amount: @expenses_detail.amount, concept_id: @expenses_detail.concept_id } }
+      post expenses_details_url, params: { expenses_detail: { amount: @expenses_detail.amount, bill_id: @expenses_detail.bill_id, concept_id: @expenses_detail.concept_id } }
     end
 
     assert_redirected_to expenses_detail_url(ExpensesDetail.last)
@@ -34,7 +34,7 @@ class ExpensesDetailsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update expenses_detail" do
-    patch expenses_detail_url(@expenses_detail), params: { expenses_detail: { amount: @expenses_detail.amount, concept_id: @expenses_detail.concept_id } }
+    patch expenses_detail_url(@expenses_detail), params: { expenses_detail: { amount: @expenses_detail.amount, bill_id: @expenses_detail.bill_id, concept_id: @expenses_detail.concept_id } }
     assert_redirected_to expenses_detail_url(@expenses_detail)
   end
 

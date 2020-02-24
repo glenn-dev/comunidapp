@@ -2,8 +2,10 @@
 
 one:
   amount: 1.5
+  bill: one
   concept: one
 
 two:
   amount: 1.5
+  bill: two
   concept: two

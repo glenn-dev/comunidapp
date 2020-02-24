@@ -15,6 +15,7 @@ class ExpensesDetailsTest < ApplicationSystemTestCase
     click_on "New Expenses Detail"
 
     fill_in "Amount", with: @expenses_detail.amount
+    fill_in "Bill", with: @expenses_detail.bill_id
     fill_in "Concept", with: @expenses_detail.concept_id
     click_on "Create Expenses detail"
 
@@ -27,6 +28,7 @@ class ExpensesDetailsTest < ApplicationSystemTestCase
     click_on "Edit", match: :first
 
     fill_in "Amount", with: @expenses_detail.amount
+    fill_in "Bill", with: @expenses_detail.bill_id
     fill_in "Concept", with: @expenses_detail.concept_id
     click_on "Update Expenses detail"
 

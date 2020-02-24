@@ -6,6 +6,7 @@
   <thead>
     <tr>
       <th>Amount</th>
+      <th>Bill</th>
       <th>Concept</th>
       <th colspan="3"></th>
     </tr>
@@ -15,6 +16,7 @@
     <% @expenses_details.each do |expenses_detail| %>
       <tr>
         <td><%= expenses_detail.amount %></td>
+        <td><%= expenses_detail.bill %></td>
         <td><%= expenses_detail.concept %></td>
         <td><%= link_to 'Show', expenses_detail %></td>
         <td><%= link_to 'Edit', edit_expenses_detail_path(expenses_detail) %></td>

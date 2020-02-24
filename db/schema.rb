@@ -10,24 +10,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_02_24_122053) do
+ActiveRecord::Schema.define(version: 2020_02_24_134708) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "bills", force: :cascade do |t|
-    t.integer "num_bill"
+    t.string "num_bill"
     t.float "total"
     t.date "issue_date"
     t.boolean "status"
     t.string "bill_doc"
     t.string "paid_doc"
-    t.bigint "expenses_detail_id"
     t.bigint "department_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["department_id"], name: "index_bills_on_department_id"
-    t.index ["expenses_detail_id"], name: "index_bills_on_expenses_detail_id"
   end
 
   create_table "buildings", force: :cascade do |t|
@@ -70,9 +68,11 @@ ActiveRecord::Schema.define(version: 2020_02_24_122053) do
 
   create_table "expenses_details", force: :cascade do |t|
     t.float "amount"
+    t.bigint "bill_id"
     t.bigint "concept_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["bill_id"], name: "index_expenses_details_on_bill_id"
     t.index ["concept_id"], name: "index_expenses_details_on_concept_id"
   end
 
@@ -94,8 +94,8 @@ ActiveRecord::Schema.define(version: 2020_02_24_122053) do
   end
 
   add_foreign_key "bills", "departments"
-  add_foreign_key "bills", "expenses_details"
   add_foreign_key "communications", "buildings"
   add_foreign_key "departments", "buildings"
+  add_foreign_key "expenses_details", "bills"
   add_foreign_key "expenses_details", "concepts"
 end

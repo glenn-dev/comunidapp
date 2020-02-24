@@ -16,7 +16,6 @@ class BillsTest < ApplicationSystemTestCase
 
     fill_in "Bill doc", with: @bill.bill_doc
     fill_in "Department", with: @bill.department_id
-    fill_in "Expenses detail", with: @bill.expenses_detail_id
     fill_in "Issue date", with: @bill.issue_date
     fill_in "Num bill", with: @bill.num_bill
     fill_in "Paid doc", with: @bill.paid_doc
@@ -34,7 +33,6 @@ class BillsTest < ApplicationSystemTestCase
 
     fill_in "Bill doc", with: @bill.bill_doc
     fill_in "Department", with: @bill.department_id
-    fill_in "Expenses detail", with: @bill.expenses_detail_id
     fill_in "Issue date", with: @bill.issue_date
     fill_in "Num bill", with: @bill.num_bill
     fill_in "Paid doc", with: @bill.paid_doc

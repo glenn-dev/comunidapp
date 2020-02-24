@@ -1,21 +1,19 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  num_bill: 1
+  num_bill: MyString
   total: 1.5
-  issue_date: 2020-02-23
+  issue_date: 2020-02-24
   status: false
   bill_doc: MyString
   paid_doc: MyString
-  expenses_detail: one
   department: one
 
 two:
-  num_bill: 1
+  num_bill: MyString
   total: 1.5
-  issue_date: 2020-02-23
+  issue_date: 2020-02-24
   status: false
   bill_doc: MyString
   paid_doc: MyString
-  expenses_detail: two
   department: two

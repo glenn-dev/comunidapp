@@ -17,7 +17,7 @@ class BillsControllerTest < ActionDispatch::IntegrationTest
 
   test "should create bill" do
     assert_difference('Bill.count') do
-      post bills_url, params: { bill: { bill_doc: @bill.bill_doc, department_id: @bill.department_id, expenses_detail_id: @bill.expenses_detail_id, issue_date: @bill.issue_date, num_bill: @bill.num_bill, paid_doc: @bill.paid_doc, status: @bill.status, total: @bill.total } }
+      post bills_url, params: { bill: { bill_doc: @bill.bill_doc, department_id: @bill.department_id, issue_date: @bill.issue_date, num_bill: @bill.num_bill, paid_doc: @bill.paid_doc, status: @bill.status, total: @bill.total } }
     end
 
     assert_redirected_to bill_url(Bill.last)
@@ -34,7 +34,7 @@ class BillsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update bill" do
-    patch bill_url(@bill), params: { bill: { bill_doc: @bill.bill_doc, department_id: @bill.department_id, expenses_detail_id: @bill.expenses_detail_id, issue_date: @bill.issue_date, num_bill: @bill.num_bill, paid_doc: @bill.paid_doc, status: @bill.status, total: @bill.total } }
+    patch bill_url(@bill), params: { bill: { bill_doc: @bill.bill_doc, department_id: @bill.department_id, issue_date: @bill.issue_date, num_bill: @bill.num_bill, paid_doc: @bill.paid_doc, status: @bill.status, total: @bill.total } }
     assert_redirected_to bill_url(@bill)
   end
 

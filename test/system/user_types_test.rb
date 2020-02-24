@@ -14,7 +14,7 @@ class UserTypesTest < ApplicationSystemTestCase
     visit user_types_url
     click_on "New User Type"
 
-    fill_in "User type", with: @user_type.user_type
+    fill_in "Name", with: @user_type.name
     click_on "Create User type"
 
     assert_text "User type was successfully created"
@@ -25,7 +25,7 @@ class UserTypesTest < ApplicationSystemTestCase
     visit user_types_url
     click_on "Edit", match: :first
 
-    fill_in "User type", with: @user_type.user_type
+    fill_in "Name", with: @user_type.name
     click_on "Update User type"
 
     assert_text "User type was successfully updated"

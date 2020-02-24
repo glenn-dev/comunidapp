@@ -18,15 +18,15 @@
     <%= f.text_field :phone, autofocus: true, autocomplete: "phone" %>
   </div>
 
-  <div class="field">
-    <%= f.label :user_type %><br />
-    <%= f.text_field :user_type, autofocus: true, autocomplete: "user_type" %>
-  </div>
-
   <!-- <div class="field">
-    <%#= f.label :user_type %>
-    <%#= f.select(options_for_select(@user_type_array), prompt: 'Seleccione tipo de usuario') %>
+    <%#= f.label :user_type %><br />
+    <%#= f.text_field :user_type, autofocus: true, autocomplete: "user_type" %>
   </div> -->
+
+  <div class="field">
+    <%= f.label :user_type %>
+    <%= f.select :user_type, options_for_select(@user_type_array) %>
+  </div>
 
   <div class="field">
     <%= f.label :password %>

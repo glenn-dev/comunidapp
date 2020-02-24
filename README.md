@@ -19,4 +19,4 @@
 * Diagrama logico de la base de datos (en desarrollo).
 ![alt text][logic]
 
-[logic]: /diagrama_logico.png
+[logic]: /diagrama_logico.jpg

@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :user_types
   resources :expenses_details
   resources :bills
   devise_for :users, controllers: {

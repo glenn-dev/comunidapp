@@ -9,19 +9,6 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav mr-auto">
 
-            <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-expanded="false">
-                Usuarios
-              </a>
-              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <!--El primer item del dropdown Usuarios debe mostrar un "index" con el listado de usuarios-->
-                <%#= link_to 'Usuarios', index_user_path, class: "dropdown-item" %>
-                <%= link_to 'Iniciar sesion', new_user_session_path, class: "dropdown-item" %>
-                <div class="dropdown-divider"></div>
-                <%= link_to 'Registrarse', new_user_registration_path, class: "dropdown-item" %>
-              </div>
-            </li>
-
             <li class="nav-item active">
               <%= link_to 'Departamentos', departments_path, class: "nav-link" %>
             </li>
@@ -39,6 +26,20 @@
                 <div class="dropdown-divider"></div>
                 <%= link_to 'Detalle de gastos', expenses_details_path, class: "dropdown-item" %>
                 <%= link_to 'Concepto', concepts_path, class: "dropdown-item" %>
+              </div>
+            </li>
+
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-expanded="false">
+                Usuarios
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <!--El primer item del dropdown Usuarios debe mostrar un "index" con el listado de usuarios-->
+                <%#= link_to 'Usuarios', user_path, class: "dropdown-item" %>
+                <%= link_to 'Iniciar sesion', new_user_session_path, class: "dropdown-item" %>
+                <div class="dropdown-divider"></div>
+                <%= link_to 'Registrarse', new_user_registration_path, class: "dropdown-item" %>
+                <%= link_to 'Tipos de usuario', user_types_path, class: "dropdown-item" %>
               </div>
             </li>
 

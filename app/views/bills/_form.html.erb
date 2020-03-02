@@ -11,42 +11,46 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :num_bill %>
-    <%= form.text_field :num_bill %>
-  </div>
+  <form>
+    <div class="field form-group col-md-8">
+      <%= form.label :department_id %>
+      <%= form.select(:department_id, options_for_select(@department_array), prompt: 'Seleccione departamento') %>
+    </div>
 
-  <div class="field">
-    <%= form.label :total %>
-    <%= form.text_field :total %>
-  </div>
-
-  <div class="field">
-    <%= form.label :issue_date %>
-    <%= form.date_select :issue_date %>
-  </div>
-
-  <div class="field">
-    <%= form.label :status %>
-    <%= form.check_box :status %>
-  </div>
-
-  <div class="field">
-    <%= form.label :bill_doc %>
-    <%= form.file_field :bill_doc %>
-  </div>
-
-  <div class="field">
-    <%= form.label :voucher_doc %>
-    <%= form.file_field :voucher_doc %>
-  </div>
-
-  <div class="field">
-    <%= form.label :department_id %>
-    <%= form.text_field :department_id %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit %>
-  </div>
+    <div class="form-row">
+      <div class="field form-group col-md-8">
+        <%= form.label :num_bill %>
+        <%= form.text_field :num_bill, class:"form-control" %>
+      </div>
+    
+      <div class="field form-group col-md-8">
+        <%= form.label :total %>
+        <%= form.text_field :total, class:"form-control" %>
+      </div>
+    
+      <div class="field form-group col-md-8">
+        <%= form.label :issue_date %>
+        <%= form.date_select :issue_date %>
+      </div>
+    
+      <div class="field form-group col-md-8">
+        <%= form.label :status %>
+        <%= form.check_box :status %>
+      </div>
+    
+      <div class="field form-group col-md-8">
+        <%= form.label :bill_doc %>
+        <%= form.file_field :bill_doc %>
+      </div>
+    
+      <div class="field form-group col-md-8">
+        <%= form.label :voucher_doc %>
+        <%= form.file_field :voucher_doc %>
+      </div>
+    
+      <div class="actions form-group col-md-8">
+        <%= form.submit %>
+      </div>
+    </div>
+  </form>
 <% end %>

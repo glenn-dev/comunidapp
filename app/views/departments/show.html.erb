@@ -13,7 +13,7 @@
 <p>
   <strong>Deuda:</strong>
   <% if @department.defaulting %>
-    <td class="align-middle"><%= link_to "Ver boleta", department.bills, class:'btn btn-danger' %></td>
+    <td class="align-middle"><%= link_to "Ver boleta", class:'btn btn-danger' %></td>
   <% else %>
     <td class="align-middle">Solvente</td>
   <% end %>
@@ -37,5 +37,5 @@
   <%= @department.building.name %>
 </p>
 
-<%= link_to 'Edit', edit_department_path(@department), class:'btn btn-outline-primary btn-sm' %> |
+<%= link_to 'Edit', edit_department_path(@department), class:'btn btn-outline-info btn-sm' %> |
 <%= link_to 'Back', departments_path, class:'btn btn-outline-danger btn-sm' %>

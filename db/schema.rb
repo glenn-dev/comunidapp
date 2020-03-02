@@ -114,11 +114,11 @@ ActiveRecord::Schema.define(version: 2020_02_24_183957) do
     t.bigint "department_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "user_types_id"
+    t.bigint "user_type_id"
     t.index ["department_id"], name: "index_users_on_department_id"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
-    t.index ["user_types_id"], name: "index_users_on_user_types_id"
+    t.index ["user_type_id"], name: "index_users_on_user_type_id"
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
@@ -127,5 +127,5 @@ ActiveRecord::Schema.define(version: 2020_02_24_183957) do
   add_foreign_key "departments", "buildings"
   add_foreign_key "expenses_details", "bills"
   add_foreign_key "expenses_details", "concepts"
-  add_foreign_key "users", "user_types", column: "user_types_id"
+  add_foreign_key "users", "user_types"
 end

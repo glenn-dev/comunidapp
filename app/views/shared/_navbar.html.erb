@@ -17,15 +17,18 @@
               <%= link_to 'Comunicados', communications_path, class: "nav-link" %>
             </li>
 
+            <li class="nav-item">
+                <%= link_to 'Boletas', bills_path, class: "nav-link" %>
+            </li>
+
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Boletas
+                Gastos
               </a>
               <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <%= link_to 'Boletas', bills_path, class: "dropdown-item" %>
-                <div class="dropdown-divider"></div>
                 <%= link_to 'Detalle de gastos', expenses_details_path, class: "dropdown-item" %>
-                <%= link_to 'Concepto', concepts_path, class: "dropdown-item" %>
+                <div class="dropdown-divider"></div>
+                <%= link_to 'Conceptos', concepts_path, class: "dropdown-item" %>
               </div>
             </li>
 

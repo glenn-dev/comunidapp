@@ -11,37 +11,42 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :num_dep %>
-    <%= form.text_field :num_dep %>
-  </div>
+  <form>
+    <div class="form-row">
+      <div class="field form-group col-md-8">
+        <%= form.label :num_dep %>
+        <%= form.text_field :num_dep, class:"form-control" %>
+      </div>
+    
+      <!-- Este campo se modificara al crear una boleta = true / al realizar el pago = false -->
+      <!-- <div class="field form-group col-md-8">
+        <%#= form.label :defaulting %>
+        <%#= form.check_box :defaulting %>
+      </div> -->
+    
+      <div class="field form-group col-md-8">
+        <%= form.label :collection %>
+        <%= form.text_field :collection, class:"form-control" %>
+      </div>
 
-  <div class="field">
-    <%= form.label :floor %>
-    <%= form.number_field :floor %>
-  </div>
+      <div class="field form-group col-md-8">
+        <%= form.label :habitability %>
+        <%= form.check_box :habitability %>
+      </div>
+    
+      <div class="field form-group col-md-8">
+        <%= form.label :building_id %>
+        <%= form.select(:building_id, options_for_select(@building_array), prompt: 'Seleccione edificio') %>
+      </div>
 
-  <div class="field">
-    <%= form.label :defaulting %>
-    <%= form.check_box :defaulting %>
-  </div>
-
-  <div class="field">
-    <%= form.label :habitability %>
-    <%= form.check_box :habitability %>
-  </div>
-
-  <div class="field">
-    <%= form.label :collection %>
-    <%= form.text_field :collection %>
-  </div>
-
-  <div class="field">
-    <%= form.label :building_id %>
-    <%= form.select(:building_id, options_for_select(@building_array), prompt: 'Seleccione edificio') %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit %>
-  </div>
+      <div class="field form-group col-md-8">
+        <%= form.label :floor %>
+        <%= form.number_field :floor, class:"form-control" %>
+      </div>
+    
+      <div class="actions col-md-8">
+        <%= form.submit %>
+      </div>
+    </div>
+  </form>
 <% end %>

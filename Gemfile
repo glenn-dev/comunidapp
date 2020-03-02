@@ -10,6 +10,8 @@ gem 'rails-erd'
 gem 'devise'
 # Cancancan authorization library
 gem 'cancancan'
+# Image processing gem
+gem 'image_processing', '~> 1.2'
 
 ## GEMS ADDED BY DEFAULT:
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'

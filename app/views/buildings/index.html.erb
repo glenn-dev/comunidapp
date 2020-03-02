@@ -20,9 +20,9 @@
         <% else %>
           <td><i class="far fa-building fa-3x img-thumbnail"></i></td>
         <% end %>
-        <td class="align-middle"><%= link_to "#{building.name}", building, class:'btn btn-outline-info btn-lg btn-block' %></td>
+        <td class="align-middle"><%= link_to "#{building.name}", building, class:'btn btn-outline-primary btn-sm btn-block' %></td>
         <td class="align-middle"><%= building.address %></td>
-        <td class="align-middle"><%= link_to 'Edit', edit_building_path(building), class:'btn btn-outline-primary btn-sm' %></td>
+        <td class="align-middle"><%= link_to 'Edit', edit_building_path(building), class:'btn btn-outline-info btn-sm' %></td>
         <td class="align-middle"><%= link_to 'Destroy', building, method: :delete, data: { confirm: 'Are you sure?' }, class:'btn btn-outline-danger btn-sm' %></td>
       </tr>
     <% end %>
@@ -31,4 +31,4 @@
 
 <br>
 
-<%= link_to 'New Building', new_building_path, class:"btn btn-primary" %>
+<%= link_to 'New Building', new_building_path, class:"btn btn-success" %>

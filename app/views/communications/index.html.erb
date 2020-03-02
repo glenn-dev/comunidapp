@@ -18,7 +18,7 @@
   <tbody>
     <% @communications.each do |communication| %>
       <tr>
-        <td class="align-middle"><%= link_to "#{communication.num_release}", communication, class:'btn btn-outline-info btn-lg btn-block' %></td>
+        <td class="align-middle"><%= link_to "#{communication.num_release}", communication, class:'btn btn-outline-primary btn-sm btn-block' %></td>
         <td class="align-middle"><%= communication.title %></td>
         <td class="align-middle"><%= communication.created_at %>
         <% if communication.status %>
@@ -32,7 +32,7 @@
           <td><i class="far fa-file-alt img-thumbnail fa-4x"></i></td>
         <% end %>
         <td class="align-middle"><%= communication.building.name %></td>
-        <td class="align-middle"><%= link_to 'Edit', edit_communication_path(communication), class:'btn btn-outline-primary btn-sm' %></td>
+        <td class="align-middle"><%= link_to 'Edit', edit_communication_path(communication), class:'btn btn-outline-info btn-sm' %></td>
         <td class="align-middle"><%= link_to 'Destroy', communication, method: :delete, data: { confirm: 'Are you sure?' }, class:'btn btn-outline-danger btn-sm' %></td>
       </tr>
     <% end %>
@@ -41,4 +41,4 @@
 
 <br>
 
-<%= link_to 'Nuevo comunicado', new_communication_path, class:"btn btn-primary" %>
+<%= link_to 'Nuevo comunicado', new_communication_path, class:"btn btn-success" %>

@@ -24,8 +24,13 @@
   </div> -->
 
   <div class="field">
+    <%= f.label :department %>
+    <%= f.select :department_id, options_for_select(@department_array), prompt: 'Seleccione departamento' %>
+  </div>
+
+  <div class="field">
     <%= f.label :user_type %>
-    <%= f.select :user_type, options_for_select(@user_type_array) %>
+    <%= f.select :user_type_id, options_for_select(@user_type_array), prompt: 'Seleccione tipo de usuario' %>
   </div>
 
   <div class="field">

@@ -1,38 +1,44 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>Num release:</strong>
+  <strong>Numero:</strong>
   <%= @communication.num_release %>
 </p>
 
 <p>
-  <strong>Title:</strong>
+  <strong>Titulo:</strong>
   <%= @communication.title %>
 </p>
 
 <p>
-  <strong>Content:</strong>
+  <strong>Contenido:</strong>
   <%= @communication.content %>
 </p>
 
 <p>
-  <strong>Status:</strong>
-  <%= @communication.status %>
-</p>
-
-<p>
-  <strong>Release:</strong>
-  <% if @communication.release_doc.attached? %>
-    <td><%= image_tag @communication.release_doc %></td>
+  <strong>Estado:</strong>
+  <% if @communication.status %>
+    <td class="align-middle">Vigente</td>
   <% else %>
-    <p>No existe documento</p>
+    <td class="align-middle">No vigente</td>
   <% end %>
 </p>
 
 <p>
-  <strong>Building:</strong>
-  <%= @communication.building %>
+  <strong>Edificio:</strong>
+  <%= @communication.building.name %>
 </p>
 
-<%= link_to 'Edit', edit_communication_path(@communication) %> |
-<%= link_to 'Back', communications_path %>
+<p>
+  <strong>Documento:</strong>
+  <% if @communication.release_doc.attached? %>
+    <td><%= image_tag @communication.release_doc, class:"img-thumbnail img-fluid show_img" %></td>
+  <% else %>
+  <i class="far fa-file-alt img-thumbnail fa-4x"></i>
+  <% end %>
+</p>
+
+
+
+<%= link_to 'Edit', edit_communication_path(@communication), class:'btn btn-outline-primary btn-sm' %> |
+<%= link_to 'Back', communications_path, class:'btn btn-outline-danger btn-sm' %>

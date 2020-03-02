@@ -1,32 +1,39 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Departments</h1>
+<h1>Departamentos</h1>
 
-<table>
+<table class="table">
   <thead>
     <tr>
-      <th>Num dep</th>
-      <th>Floor</th>
-      <th>Defaulting</th>
-      <th>Habitability</th>
-      <th>Collection</th>
-      <th>Building</th>
-      <th colspan="3"></th>
+      <th>Numero</th>
+      <th>Deuda</th>
+      <th>Habitabilidad</th>
+      <th>Recaudacion</th>
+      <th>Edificio</th>
+      <th>Piso</th>
+      <th colspan="2"></th>
     </tr>
   </thead>
 
   <tbody>
     <% @departments.each do |department| %>
       <tr>
-        <td><%= department.num_dep %></td>
-        <td><%= department.floor %></td>
-        <td><%= department.defaulting %></td>
-        <td><%= department.habitability %></td>
-        <td><%= department.collection %></td>
-        <td><%= department.building.name %></td>
-        <td><%= link_to 'Show', department %></td>
-        <td><%= link_to 'Edit', edit_department_path(department) %></td>
-        <td><%= link_to 'Destroy', department, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td class="align-middle"><%= link_to "#{department.num_dep}", department, class:'btn btn-outline-info btn-lg btn-block' %></td>
+        <% if department.defaulting %>
+          <td class="align-middle"><%= link_to "Ver boleta", department.bills, class:'btn btn-danger' %></td>
+        <% else %>
+          <td class="align-middle">Solvente</td>
+        <% end %>
+        <% if department.habitability %>
+          <td class="align-middle">Habitable</td>
+        <% else %>
+          <td class="align-middle">No disponible</td>
+        <% end %>
+        <td class="align-middle"><%= department.collection %></td>
+        <td class="align-middle"><%= department.building.name %></td>
+        <td class="align-middle"><%= department.floor %></td>
+        <td class="align-middle"><%= link_to 'Edit', edit_department_path(department), class:'btn btn-outline-primary btn-sm' %></td>
+        <td class="align-middle"><%= link_to 'Destroy', department, method: :delete, data: { confirm: 'Are you sure?' }, class:'btn btn-outline-danger btn-sm' %></td>
       </tr>
     <% end %>
   </tbody>
@@ -34,4 +41,4 @@
 
 <br>
 
-<%= link_to 'New Department', new_department_path %>
+<%= link_to 'Nuevo departamento', new_department_path, class:"btn btn-primary" %>

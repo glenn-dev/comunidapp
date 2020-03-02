@@ -14,7 +14,7 @@
 [Tablero Trello] (https://trello.com/b/RIZueiph/g-28)
 
 * Para visualizar el landing page ingrese a:
-* [Heroku] (https://whispering-caverns-15460.herokuapp.com/)
+* [Heroku] (https://afternoon-island-22684.herokuapp.com)
 
 * Diagrama logico de la base de datos (en desarrollo).
 ![alt text][logic]

@@ -1,5 +1,6 @@
 class ExpensesDetailsController < ApplicationController
   before_action :set_expenses_detail, only: [:show, :edit, :update, :destroy]
+  before_action :set_concept, only: [:new, :edit, :create]
 
   # GET /expenses_details
   # GET /expenses_details.json
@@ -65,6 +66,10 @@ class ExpensesDetailsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_expenses_detail
       @expenses_detail = ExpensesDetail.find(params[:id])
+    end
+
+    def set_concept
+      @concept_array = Concept.order(:name).pluck(:name, :id)
     end
 
     # Only allow a list of trusted parameters through.

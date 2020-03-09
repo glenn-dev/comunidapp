@@ -13,7 +13,7 @@
   <tbody>
     <% @concepts.each do |concept| %>
       <tr>
-        <td><%= link_to "#{concept.name}", concept, class:'btn btn-outline-primary btn-sm btn-block' %></td>
+        <td><%= concept.name %></td>
         <td><%= link_to 'Edit', edit_concept_path(concept), class:'btn btn-outline-info btn-sm' %></td>
         <td><%= link_to 'Destroy', concept, method: :delete, data: { confirm: 'Are you sure?' }, class:'btn btn-outline-danger btn-sm' %></td>
       </tr>

@@ -1,3 +1,4 @@
+<!-- Bill form -->
 <%= form_with(model: bill, local: true) do |form| %>
   <% if bill.errors.any? %>
     <div id="error_explanation">
@@ -11,46 +12,106 @@
     </div>
   <% end %>
 
-  <form>
-    <div class="field form-group col-md-8">
-      <%= form.label :department_id %>
-      <%= form.select(:department_id, options_for_select(@department_array), prompt: 'Seleccione departamento') %>
-    </div>
-
-    <div class="form-row">
-      <div class="field form-group col-md-8">
-        <%= form.label :num_bill %>
-        <%= form.text_field :num_bill, class:"form-control" %>
-      </div>
-    
-      <div class="field form-group col-md-8">
-        <%= form.label :total %>
-        <%= form.text_field :total, class:"form-control" %>
-      </div>
-    
-      <div class="field form-group col-md-8">
-        <%= form.label :issue_date %>
-        <%= form.date_select :issue_date %>
-      </div>
-    
-      <div class="field form-group col-md-8">
-        <%= form.label :status %>
-        <%= form.check_box :status %>
-      </div>
-    
-      <div class="field form-group col-md-8">
-        <%= form.label :bill_doc %>
-        <%= form.file_field :bill_doc %>
-      </div>
-    
-      <div class="field form-group col-md-8">
-        <%= form.label :voucher_doc %>
-        <%= form.file_field :voucher_doc %>
-      </div>
-    
-      <div class="actions form-group col-md-8">
-        <%= form.submit %>
-      </div>
-    </div>
-  </form>
+  <table class="table">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">Num. Boleta</th>
+        <th scope="col">Departamento</th>
+        <th scope="col">Fecha</th>
+        <th scope="col">Estado</th>
+        <!-- <th scope="col">Total</th> -->
+        <th scope="col">Boleta</th>
+        <th scope="col">Pago</th>
+        <th scope="col" colspan="7"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>
+          <!-- <div class="field form-group col-md-8"> -->
+            <!-- <%#= form.label :num_bill %> -->
+            <%= form.text_field :num_bill, class:"form-control" %>
+          <!-- </div> -->
+        </td>
+        <td>
+          <!-- <div class="field form-group col-md-8"> -->
+            <!-- <%#= form.label :department_id %> -->
+            <%= form.select(:department_id, options_for_select(@department_array), prompt: 'Departamento') %>
+          <!-- </div> -->
+        </td>
+        <td>
+          <!-- <div class="field form-group col-md-8"> -->
+            <!-- <%#= form.label :issue_date %> -->
+            <%= form.date_select :issue_date %>
+          <!-- </div> -->
+        </td>
+        <td>
+          <!-- <div class="field form-group col-md-8"> -->
+            <!-- <%#= form.label :status %> -->
+            <%= form.check_box :status %>
+          <!-- </div> -->
+        </td>
+        <td>
+          <!-- <div class="field form-group col-md-8"> -->
+            <!-- <%#= form.label :bill_doc %> -->
+            <%= form.file_field :bill_doc %>
+          <!-- </div> -->
+        </td>
+        <td>
+          <!-- <div class="field form-group col-md-8"> -->
+            <!-- <%#= form.label :voucher_doc %> -->
+            <%= form.file_field :voucher_doc %>
+          <!-- </div> -->
+        </td>
+        <td>
+          <!-- <div class="actions form-group col-md-8"> -->
+            <%= form.submit %>
+          <!-- </div> -->
+        </td>
+      </tr>
+    </tbody>
+  </table>
 <% end %>
+
+
+<!-- Expenses form -->
+<%= form_with(model: expenses_detail, local: true) do |form| %>
+  <% if expenses_detail.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(expenses_detail.errors.count, "error") %> prohibited this expenses_detail from being saved:</h2>
+
+      <ul>
+      <% expenses_detail.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <table class="table">
+    <thead class="thead-light">
+      <tr>
+        <th scope="col">Monto</th>
+        <th scope="col">Concepto</th>
+      </tr>
+    </thead>
+    <tbody>
+      <td class="align-middle">
+        <div class="form-group">
+          <!-- <%#= form.label :amount %> -->
+          <%= form.text_field :amount %>
+        </div>
+      </td>
+      <td class="align-middle">
+        <div class="form-group">
+          <!-- <%#= form.label :concept_id %> -->
+          <%= form.select(:concept_id, options_for_select(@concept_array), prompt: 'Seleccione concepto') %>
+        </div>
+      </td>
+    </tbody>
+    
+    <div class="actions">
+      <%= form.submit %>
+    </div>
+  <% end %>
+  </table>

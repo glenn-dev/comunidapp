@@ -1,0 +1,8 @@
+$('#expenses_modal').modal()
+$('#expenses_modal_body').html('<%= j render 'form', bill: @bill, expenses_detail: @expenses_detail %>')
+$('#expenses_modal_title').html('Nueva boleta:')
+
+
+// <h1>New Bill</h1>
+// <%#= render 'form', bill: @bill %>
+// <%#= link_to 'Back', bills_path %>

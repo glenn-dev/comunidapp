@@ -1,10 +1,12 @@
 class BillsController < ApplicationController
   before_action :set_bill, only: [:show, :edit, :update, :destroy]
+  before_action :set_expenses_detail, only: [:show, :edit, :update, :destroy]
 
   # GET /bills
   # GET /bills.json
   def index
     @bills = Bill.all
+    @expenses_details = ExpensesDetail.all
   end
 
   # GET /bills/1
@@ -15,6 +17,7 @@ class BillsController < ApplicationController
   # GET /bills/new
   def new
     @bill = Bill.new
+    @expenses_detail = ExpensesDetail.new
   end
 
   # GET /bills/1/edit
@@ -25,10 +28,11 @@ class BillsController < ApplicationController
   # POST /bills.json
   def create
     @bill = Bill.new(bill_params)
+    @expenses_detail = ExpensesDetail.new(expenses_detail_params)
 
     respond_to do |format|
-      if @bill.save
-        format.html { redirect_to @bill, notice: 'Bill was successfully created.' }
+      if @bill.save && @expenses_detail.save
+        format.html { redirect_to @bills, notice: 'Bill was successfully created.' }
         format.json { render :show, status: :created, location: @bill }
       else
         format.html { render :new }
@@ -67,6 +71,14 @@ class BillsController < ApplicationController
       @bill = Bill.find(params[:id])
     end
 
+    def set_expenses_detail
+      @expenses_detail = ExpensesDetail.find(params[:id])
+    end
+
+    def expenses_detail_params
+      params.require(:expenses_detail).permit(:amount, :bill_id, :concept_id)
+    end
+    
     # Only allow a list of trusted parameters through.
     def bill_params
       params.require(:bill).permit(:num_bill, :total, :issue_date, :status, :bill_doc, :voucher_doc, :department_id)

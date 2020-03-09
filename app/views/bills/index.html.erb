@@ -1,47 +1,67 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Bills</h1>
-
-<table class="table">
-  <thead>
-    <tr>
-      <th>Num bill</th>
-      <th>Total</th>
-      <th>Issue date</th>
-      <th>Status</th>
-      <th>Bill doc</th>
-      <th>Paid doc</th>
-      <th>Department</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @bills.each do |bill| %>
+  <h1>Bills</h1>
+  
+  <%= link_to 'Nueva Boleta', new_bill_path, remote: true, class:"btn btn-success mb-3" %>
+      
+  <!-- <%#= render 'form', bill: @bill %> -->
+  <table class="table">
+    <thead class="thead-light">
       <tr>
-        <td><%= bill.num_bill %></td>
-        <td><%= bill.total %></td>
-        <td><%= bill.issue_date %></td>
-        <td><%= bill.status %></td>
-        <% if bill.bill_doc.attached? %>
-          <td><%= image_tag bill.bill_doc %></td>
-        <% else %>
-          <td>No existe documento</td>
-        <% end %>
-        <% if bill.voucher_doc.attached? %>
-          <td><%= image_tag bill.voucher_doc %></td>
-        <% else %>
-          <td>No existe documento</td>
-        <% end %>
-        <td><%= bill.department %></td>
-        <td><%= link_to 'Show', bill %></td>
-        <td><%= link_to 'Edit', edit_bill_path(bill) %></td>
-        <td><%= link_to 'Destroy', bill, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <th>#</th>
+        <th>Departamento</th>
+        <th>Fecha</th>
+        <th>Estado</th>
+        <th>Documento</th>
+        <th>Voucher</th>
+        <th>Total</th>
+        <th colspan="9"></th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
+  
+    <tbody>
+      <% @bills.each do |bill| %>
+        <tr>
+          <td class="align-middle"><%= link_to "#{bill.num_bill}", bill, class:'btn btn-outline-primary' %></td>
+          <td class="align-middle"><%= bill.department.num_dep %></td>
+          <td class="align-middle"><%= bill.issue_date %></td>
+          <td class="align-middle"><%= bill.status %></td>
+          <% if bill.bill_doc.attached? %>
+            <td class="align-middle"><%= image_tag bill.bill_doc %></td>
+          <% else %>
+            <td class="align-middle">Sin documento</td>
+          <% end %>
+          <% if bill.voucher_doc.attached? %>
+            <td class="align-middle"><%= image_tag bill.voucher_doc %></td>
+          <% else %>
+            <td class="align-middle">Sin voucher</td>
+          <% end %>
+          <td class="align-middle"><%= bill.total %></td>
+          <td class="align-middle"><%= link_to 'Edit', edit_bill_path(bill) %></td>
+          <td class="align-middle"><%= link_to 'Destroy', bill, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
 
-<br>
 
-<%= link_to 'New Bill', new_bill_path %>
+<!-- New Expenses Modal -->
+<div class="modal fade" id="expenses_modal" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 id="expenses_modal_title" class="modal-title" id="staticBackdropLabel">Nuevo detalle de gastos</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div id="expenses_modal_body" class="modal-body">
+        
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline-danger" data-dismiss="modal">Cancelar</button>
+        <button type="button" class="btn btn-primary">Crear</button>
+      </div>
+    </div>
+  </div>
+</div>

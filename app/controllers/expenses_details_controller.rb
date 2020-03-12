@@ -68,7 +68,7 @@ class ExpensesDetailsController < ApplicationController
       @expenses_detail = ExpensesDetail.find(params[:id])
     end
 
-    def set_concept
+    def set_concepts
       @concept_array = Concept.order(:name).pluck(:name, :id)
     end
 

@@ -1,6 +1,9 @@
 class BillsController < ApplicationController
   before_action :set_bill, only: [:show, :edit, :update, :destroy]
   before_action :set_expenses_detail, only: [:show, :edit, :update, :destroy]
+  before_action :set_concepts_array, only: [:new, :edit, :create]
+  before_action :set_departments_array, only: [:new, :edit, :create]
+
 
   # GET /bills
   # GET /bills.json
@@ -33,7 +36,7 @@ class BillsController < ApplicationController
     respond_to do |format|
       if @bill.save && @expenses_detail.save
         format.html { redirect_to @bills, notice: 'Bill was successfully created.' }
-        format.json { render :show, status: :created, location: @bill }
+        format.json { render :index, status: :created, location: @bill }
       else
         format.html { render :new }
         format.json { render json: @bill.errors, status: :unprocessable_entity }
@@ -71,16 +74,20 @@ class BillsController < ApplicationController
       @bill = Bill.find(params[:id])
     end
 
-    def set_expenses_detail
-      @expenses_detail = ExpensesDetail.find(params[:id])
+     # Only allow a list of trusted parameters through.
+    def bill_params
+      params.require(:bill).permit(:num_bill, :total, :issue_date, :status, :bill_doc, :voucher_doc, :department_id)
     end
 
     def expenses_detail_params
-      params.require(:expenses_detail).permit(:amount, :bill_id, :concept_id)
+      params.require(:expenses_detail).permit(:amount, :expenses_type, :bill_id, :concept_id)
     end
-    
-    # Only allow a list of trusted parameters through.
-    def bill_params
-      params.require(:bill).permit(:num_bill, :total, :issue_date, :status, :bill_doc, :voucher_doc, :department_id)
+
+    def set_concepts_array
+      @concept_array = Concept.order(:name).pluck(:name, :id)
+    end
+
+    def set_departments_array
+      @department_array = Department.order(:num_dep).pluck(:num_dep, :id)
     end
 end

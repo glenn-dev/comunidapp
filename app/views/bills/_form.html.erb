@@ -1,8 +1,8 @@
 <!-- Bill form -->
-<%= form_for @bill do |f| %>
+<%= form_with(model: bill) do |f| %>
 
   <div class="row">
-    <div class="col-md-6">
+    <div class="col-md-6 mr-5">
       <div class="form-group">
         <div class="input-group">
           <div class="input-group-prepend">
@@ -36,7 +36,7 @@
       </div>
     </div>
 
-    <div class="col-md-4 ml-4">
+    <div class="col-md-3 ml-5">
       <div class="form-group">
         <%= f.label :bill_doc, "Boleta" %>
         <br>
@@ -52,38 +52,21 @@
 
   </div>
   
-  
-
   <!-- Expenses details form -->
-  <%= f.fields_for :expenses_detail do |p| %>
-  <table class="table">
-    <thead class="thead-light">
-      <tr>
-        <th scope="col">Monto</th>
-        <th scope="col">Concepto</th>
-        <th colspan="3"></th>
-      </tr>
-    </thead>
-    <tbody>
-      <td>
-        <div class="form-group">
-          <%= p.text_field :amount %>
-        </div>
-      </td>
-      <td>
-        <div class="form-group">
-          <%= p.select(:concept, options_for_select(@concept_array), prompt: 'Seleccione concepto') %>
-        </div>
-      </td>
-      <td>
-        <span style="font-size: 48px; color: Dodgerblue;">
-          <i class="far fa-plus-square fa-2x btn"></i>
-        </span>
-      </td>
-    </tbody>
-  </table>
-
-  <% end %>
+  <%= f.fields_for :expenses_detail do |expenses_form| %>
+    <table class="table">
+      <thead class="thead-light">
+        <tr>
+          <th>Monto</th>
+          <th>Concepto</th>
+          <th colspan="5"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <%= render 'bills/expenses/expenses_fields', expenses_form: expenses_form %>
+      </tbody>
+      <% end %>
+    </table>
 
   <%= f.submit %>
 

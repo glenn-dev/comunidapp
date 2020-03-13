@@ -14,10 +14,14 @@
  *= require_self
  */
 
- .show_img {
-    max-height: 800px;
- }
+.show_img {
+ max-height: 800px;
+}
 
- .index_img {
-    max-height: 50px;
- }
+.index_img {
+ max-height: 50px;
+}
+
+.fa-plus-square {
+ color: rgb(18, 29, 175);
+}

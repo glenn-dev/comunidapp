@@ -7,4 +7,6 @@ class User < ApplicationRecord
   belongs_to :department
   belongs_to :user_type
 
+  validates :name, :phone, :email, :department_id, presence: true
+
 end

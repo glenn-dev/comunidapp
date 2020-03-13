@@ -1,6 +1,6 @@
 class BillsController < ApplicationController
   before_action :set_bill, only: [:show, :edit, :update, :destroy]
-  before_action :set_expenses_detail, only: [:show, :edit, :update, :destroy]
+  # before_action :set_expenses_detail, only: [:show, :edit, :update, :destroy]
   before_action :set_concepts_array, only: [:new, :edit, :create]
   before_action :set_departments_array, only: [:new, :edit, :create]
 
@@ -20,7 +20,7 @@ class BillsController < ApplicationController
   # GET /bills/new
   def new
     @bill = Bill.new
-    @expenses_detail = ExpensesDetail.new
+    2.times { @bill.expenses_details.build }
   end
 
   # GET /bills/1/edit
@@ -31,15 +31,16 @@ class BillsController < ApplicationController
   # POST /bills.json
   def create
     @bill = Bill.new(bill_params)
-    @expenses_detail = ExpensesDetail.new(expenses_detail_params)
 
     respond_to do |format|
-      if @bill.save && @expenses_detail.save
-        format.html { redirect_to @bills, notice: 'Bill was successfully created.' }
+      if @bill.save
+        format.html { redirect_to @bill, notice: 'Bill was successfully created.' }
         format.json { render :index, status: :created, location: @bill }
+        format.js
       else
         format.html { render :new }
         format.json { render json: @bill.errors, status: :unprocessable_entity }
+        format.js { render :error }
       end
     end
   end
@@ -76,12 +77,12 @@ class BillsController < ApplicationController
 
      # Only allow a list of trusted parameters through.
     def bill_params
-      params.require(:bill).permit(:num_bill, :total, :issue_date, :status, :bill_doc, :voucher_doc, :department_id)
+      params.require(:bill).permit(:num_bill, :issue_date, :status, :bill_doc, :voucher_doc, :department_id, expenses_details_atributes: [:amount, :concept_id, :bill_id ])
     end
 
-    def expenses_detail_params
-      params.require(:expenses_detail).permit(:amount, :expenses_type, :bill_id, :concept_id)
-    end
+    # def expenses_detail_params
+    #   params.require(:expenses_detail).permit(:amount, :expenses_type, :bill_id, :concept_id)
+    # end
 
     def set_concepts_array
       @concept_array = Concept.order(:name).pluck(:name, :id)

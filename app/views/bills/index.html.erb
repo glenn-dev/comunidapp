@@ -19,28 +19,8 @@
       </tr>
     </thead>
   
-    <tbody>
-      <% @bills.each do |bill| %>
-        <tr>
-          <td class="align-middle"><%= link_to "#{bill.num_bill}", bill, class:'btn btn-outline-primary' %></td>
-          <td class="align-middle"><%= bill.department.num_dep %></td>
-          <td class="align-middle"><%= bill.issue_date %></td>
-          <td class="align-middle"><%= bill.status %></td>
-          <% if bill.bill_doc.attached? %>
-            <td class="align-middle"><%= image_tag bill.bill_doc %></td>
-          <% else %>
-            <td class="align-middle">Sin documento</td>
-          <% end %>
-          <% if bill.voucher_doc.attached? %>
-            <td class="align-middle"><%= image_tag bill.voucher_doc %></td>
-          <% else %>
-            <td class="align-middle">Sin voucher</td>
-          <% end %>
-          <td class="align-middle"><%= bill.total %></td>
-          <td class="align-middle"><%= link_to 'Edit', edit_bill_path(bill) %></td>
-          <td class="align-middle"><%= link_to 'Destroy', bill, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-        </tr>
-      <% end %>
+    <tbody id="bills">
+      <%= render @bills %>
     </tbody>
   </table>
 
@@ -57,10 +37,6 @@
       </div>
       <div id="expenses_modal_body" class="modal-body">
         
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-outline-danger" data-dismiss="modal">Cancelar</button>
-        <button id="submit_bill" type="button" class="btn btn-primary">Crear</button>
       </div>
     </div>
   </div>

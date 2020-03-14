@@ -1,5 +1,2 @@
 $('#expenses_modal').modal()
-$('#expenses_modal_body').html('<%= j render 'form', bill: @bill, expenses_detail: @expenses_detail, concept: @concept %>')
-$('#submit_bill').click(function(){
-  $('form')[1].onsubmit()
-})
+$('#expenses_modal_body').html('<%= j render 'form', bill: @bill %>')

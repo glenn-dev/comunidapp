@@ -29,7 +29,7 @@
         <% if communication.release_doc.attached? %>
           <td><%= image_tag communication.release_doc, class:'index_img img-thumbnail' %></td>
         <% else %>
-          <td><i class="far fa-file-alt img-thumbnail fa-4x"></i></td>
+          <td><i class="far fa-file-alt img-thumbnail fa-2x"></i></td>
         <% end %>
         <td class="align-middle"><%= communication.building.name %></td>
         <td class="align-middle"><%= link_to 'Edit', edit_communication_path(communication), class:'btn btn-outline-info btn-sm' %></td>

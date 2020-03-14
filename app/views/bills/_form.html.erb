@@ -1,5 +1,5 @@
 <!-- Bill form -->
-<%= form_with(model: bill) do |f| %>
+<%= form_with(model: bill) do |form| %>
 
   <div class="row">
     <div class="col-md-6 mr-5">
@@ -8,7 +8,7 @@
           <div class="input-group-prepend">
             <span class="input-group-text">Num. Boleta</span>
           </div>
-          <%= f.text_field :num_bill, class:"form-control" %>
+          <%= form.text_field :num_bill, class:"form-control" %>
         </div>
       </div>
 
@@ -17,7 +17,7 @@
           <div class="input-group-prepend">
             <span class="input-group-text">Departamento</span>
           </div>
-          <%= f.select(:department_id, options_for_select(@department_array), prompt: 'Departamento') %>
+          <%= form.select(:department_id, options_for_select(@department_array), prompt: 'Departamento') %>
         </div>
       </div>
 
@@ -26,34 +26,34 @@
           <div class="input-group-prepend">
             <span class="input-group-text">Fecha</span>
           </div>
-          <%= f.date_select :issue_date %>
+          <%= form.date_select :issue_date %>
         </div>
       </div>
 
       <div class="form-group">
-        <%= f.label :status, "Estado" %>
-        <%= f.check_box :status %>
+        <%= form.label :status, "Estado" %>
+        <%= form.check_box :status %>
       </div>
     </div>
 
     <div class="col-md-3 ml-5">
       <div class="form-group">
-        <%= f.label :bill_doc, "Boleta" %>
+        <%= form.label :bill_doc, "Boleta" %>
         <br>
-        <%= f.file_field :bill_doc %>
+        <%= form.file_field :bill_doc %>
       </div>
     
       <div class="form-group">
-        <%= f.label :voucher_doc, "Voucher de Pago" %>
+        <%= form.label :voucher_doc, "Voucher de Pago" %>
         <br>
-        <%= f.file_field :voucher_doc %>
+        <%= form.file_field :voucher_doc %>
       </div>
     </div>
 
   </div>
   
   <!-- Expenses details form -->
-  <%= f.fields_for :expenses_detail do |expenses_form| %>
+  <%= form.fields_for :expenses_details do |expenses_form| %>
     <table class="table">
       <thead class="thead-light">
         <tr>
@@ -64,10 +64,22 @@
       </thead>
       <tbody>
         <%= render 'bills/expenses/expenses_fields', expenses_form: expenses_form %>
+        <td>
+          <%= add_expenses_detail_button(form) %>
+        </td>
       </tbody>
-      <% end %>
     </table>
-
-  <%= f.submit %>
-
+    
+    <div class="container">
+      <div class="row">
+        <div class="col-10">
+          <button type="button" class="btn btn-outline-danger" data-dismiss="modal">Cancelar</button>
+        </div>
+        <div class="col-2">
+          <%= form.submit type:"button", class:"btn btn-success" %>
+        </div>
+      </div>
+    </div>
+    <% end %>
+  
 <% end %>

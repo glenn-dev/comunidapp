@@ -20,7 +20,7 @@ class BillsController < ApplicationController
   # GET /bills/new
   def new
     @bill = Bill.new
-    2.times { @bill.expenses_details.build }
+    @bill.expenses_details.build
   end
 
   # GET /bills/1/edit
@@ -31,7 +31,6 @@ class BillsController < ApplicationController
   # POST /bills.json
   def create
     @bill = Bill.new(bill_params)
-
     respond_to do |format|
       if @bill.save
         format.html { redirect_to @bill, notice: 'Bill was successfully created.' }
@@ -77,12 +76,8 @@ class BillsController < ApplicationController
 
      # Only allow a list of trusted parameters through.
     def bill_params
-      params.require(:bill).permit(:num_bill, :issue_date, :status, :bill_doc, :voucher_doc, :department_id, expenses_details_atributes: [:amount, :concept_id, :bill_id ])
+      params.require(:bill).permit(:num_bill, :issue_date, :status, :bill_doc, :voucher_doc, :department_id, expenses_details_attributes: [:amount, :concept_id, :id, :_destroy ])
     end
-
-    # def expenses_detail_params
-    #   params.require(:expenses_detail).permit(:amount, :expenses_type, :bill_id, :concept_id)
-    # end
 
     def set_concepts_array
       @concept_array = Concept.order(:name).pluck(:name, :id)

@@ -1,6 +1,6 @@
 <td class="align-middle">
   <div class="form-group">
     <%= expenses_form.text_field :amount %>
-    <%= expenses_form.select(:concept, options_for_select(@concept_array), prompt: 'Seleccione concepto') %>
+    <%= expenses_form.select(:concept_id, options_for_select(@concept_array), prompt: 'Seleccione concepto') %>
   </div>
 </td>

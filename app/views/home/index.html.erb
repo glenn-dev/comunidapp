@@ -1,0 +1,11 @@
+<%= current_user ? "Hola #{current_user.name}" : "Bienvenido!" %>
+<br>
+
+<% if current_user %>
+      <%= link_to 'Cerrar sesion', destroy_user_session_path, method: :delete %>
+      <%= link_to 'Editar contraseña', edit_user_password_path, method: :delete %>
+      <%= link_to 'Editar registro', edit_user_registration_path, method: :delete %>
+<% else %>
+      <%= link_to'Iniciar sesion', new_user_session_path %>
+      <%= link_to'Registrarse', new_user_registration_path %>
+<% end %>

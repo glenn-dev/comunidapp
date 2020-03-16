@@ -1,55 +1,84 @@
-<h2>Sign up</h2>
+<h2>Registrate</h2>
 
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
   <%= render "devise/shared/error_messages", resource: resource %>
 
-  <div class="field">
-    <%= f.label :name %><br />
-    <%= f.text_field :name, autofocus: true, autocomplete: "name" %>
-  </div>
+  <div id="logreg-forms">
+    <div class="form-sign">
+      <br>
+      <h1 class="h3 mb-3 font-weight-normal" style="text-align: center">Ingresa tus datos</h1>
+      <div class="field col-md-12 my-3">
+        <%= f.text_field :name, autofocus: true, autocomplete: "name", id:"user-name", class:"form-control", placeholder:"Nombre completo" %>
+      </div>
+      
+      <div class="field col-md-12 my-3">
+        <%= f.email_field :email, autofocus: true, autocomplete: "email", id:"user-email", class:"form-control", placeholder:"Email" %>
+      </div>
+      
+      <div class="field col-md-12 my-3">
+        <%= f.text_field :phone, autofocus: true, autocomplete: "phone", class:"form-control", placeholder:"Telefono" %>
+      </div>
+      
+      <div class="field col-md-12 my-3">
+        <div class="dropdown">
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <span class="input-group-text pl-3 pr-3"><i class="fas fa-home"></i></span>
+            </div>
+            <%= f.select :department_id, options_for_select(@department_array, {class: "dropdown-menu btn-block"}), prompt: 'Seleccione departamento', class:'dropdown-menu btn-block' %>  
+          </div>
+        </div>
+      </div>
+      
+      <div class="field col-md-12 my-3">
+        <div class="input-group">
+          <div class="input-group-prepend">
+            <span class="input-group-text pr-4"><i class="fas fa-user"></i></span>
+          </div>
+          <%= f.select :user_type_id, options_for_select(@user_type_array), prompt: 'Seleccione tipo de usuario', class:'dropdown-menu btn-block' %>
+        </div>
+      </div>
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
+      <div class="field col-md-12 my-3">
+        <%= f.password_field :password, autocomplete: "new-password", id:"user-pass", class:"form-control", placeholder:"Contraseña" %>
+      </div>
 
-  <div class="field">
-    <%= f.label :phone %><br />
-    <%= f.text_field :phone, autofocus: true, autocomplete: "phone" %>
-  </div>
+      <div class="field col-md-12 my-3">
+        <%= f.password_field :password_confirmation, autocomplete: "new-password", id:"user-repeatpass", class:"form-control", placeholder:"Repita constaseña" %>
+      </div>
+      
+      <% if @minimum_password_length %>
+        <em class="mx-3">(Al menos <%= @minimum_password_length %> caracteres)</em>
+      <% end %>
 
-  <!-- <div class="field">
-    <%#= f.label :user_type %><br />
-    <%#= f.text_field :user_type.name, autofocus: true, autocomplete: "user_type" %>
-  </div> -->
+      <div class="container">
+        <%= f.submit "Sign up", class:"btn btn-primary btn-block mt-4" %><br />
+      </div>
 
-  <div class="field">
-    <%= f.label :department %>
-    <%= f.select :department_id, options_for_select(@department_array), prompt: 'Seleccione departamento' %>
-  </div>
+    </div>
 
-  <div class="field">
-    <%= f.label :user_type %>
-    <%= f.select :user_type_id, options_for_select(@user_type_array), prompt: 'Seleccione tipo de usuario' %>
   </div>
-
-  <div class="field">
-    <%= f.label :password %>
-    <% if @minimum_password_length %>
-      <em>(<%= @minimum_password_length %> characters minimum)</em>
-    <% end %>
-    <br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit "Sign up" %>
-  </div>
+ 
 <% end %>
 
-<%= render "devise/shared/links" %>
+
+<!-- asdasd -->
+
+<!-- <form action="/signup/" class="form-signup">
+  <div class="social-login">
+      <button class="btn facebook-btn social-btn" type="button"><span><i class="fab fa-facebook-f"></i> Sign up with Facebook</span> </button>
+  </div>
+  <div class="social-login">
+      <button class="btn google-btn social-btn" type="button"><span><i class="fab fa-google-plus-g"></i> Sign up with Google+</span> </button>
+  </div>
+  
+  <p style="text-align:center">OR</p>
+
+  <input type="text" id="user-name" class="form-control" placeholder="Full name" required="" autofocus="">
+  <input type="email" id="user-email" class="form-control" placeholder="Email address" required autofocus="">
+  <input type="password" id="user-pass" class="form-control" placeholder="Password" required autofocus="">
+  <input type="password" id="user-repeatpass" class="form-control" placeholder="Repeat Password" required autofocus="">
+
+  <button class="btn btn-primary btn-block" type="submit"><i class="fas fa-user-plus"></i> Sign Up</button>
+  <a href="#" id="cancel_signup"><i class="fas fa-angle-left"></i> Back</a>
+</form> -->

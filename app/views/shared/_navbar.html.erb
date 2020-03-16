@@ -1,57 +1,78 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed">
-    <div class="container">
+  <div class="container">
 
-      <%= link_to 'Buildings-app', root_path, class: "navbar-brand" %>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
+    <%= link_to 'Buildings-app', root_path, class: "navbar-brand" %>
+
+    <div class="collapse navbar-collapse w-100 order-1 order-md-0 dual-collapse2" id="navbarSupportedContent">
       
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav mr-auto">
+      <% if signed_in? %>
+      
+        <ul class="navbar-nav mr-auto">
+          
+          <li class="nav-item active">
+            <%= link_to 'Departamentos', departments_path, class: "nav-link" %>
+          </li>
+          
+          <li class="nav-item">
+            <%= link_to 'Comunicados', communications_path, class: "nav-link" %>
+          </li>
+          
+          <li class="nav-item">
+              <%= link_to 'Boletas', bills_path, class: "nav-link" %>
+          </li>
+          
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Gastos
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <%= link_to 'Detalle de gastos', expenses_details_path, class: "dropdown-item" %>
+              <div class="dropdown-divider"></div>
+              <%= link_to 'Conceptos', concepts_path, class: "dropdown-item" %>
+            </div>
+          </li>
 
-            <li class="nav-item active">
-              <%= link_to 'Departamentos', departments_path, class: "nav-link" %>
-            </li>
+        </ul>
 
-            <li class="nav-item">
-              <%= link_to 'Comunicados', communications_path, class: "nav-link" %>
-            </li>
+      <% end %>
 
-            <li class="nav-item">
-                <%= link_to 'Boletas', bills_path, class: "nav-link" %>
-            </li>
-
-            <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Gastos
-              </a>
-              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <%= link_to 'Detalle de gastos', expenses_details_path, class: "dropdown-item" %>
-                <div class="dropdown-divider"></div>
-                <%= link_to 'Conceptos', concepts_path, class: "dropdown-item" %>
-              </div>
-            </li>
-
-            <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown2" role="button" data-toggle="dropdown" aria-expanded="false">
-                Usuarios
-              </a>
-              <div class="dropdown-menu" aria-labelledby="navbarDropdown2">
-                <!--El primer item del dropdown Usuarios debe mostrar un "index" con el listado de usuarios-->
-                <%#= link_to 'Usuarios', user_path, class: "dropdown-item" %>
-                <%= link_to 'Iniciar sesion', new_user_session_path, class: "dropdown-item" %>
-                <div class="dropdown-divider"></div>
-                <%= link_to 'Registrarse', new_user_registration_path, class: "dropdown-item" %>
-                <%= link_to 'Tipos de usuario', user_types_path, class: "dropdown-item" %>
-              </div>
-            </li>
-
-          </ul>
-          <form class="form-inline my-2 my-lg-0">
-            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-          </form>
-        </div>
     </div>
+
+    <div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
+      <ul class="navbar-nav ml-auto">
+          
+        <% if signed_in? %>
+
+          <li class="nav-item">
+            <span class="navbar-text small mr-3">
+              <%= current_user ? "Hola #{current_user.name}!" : "" %>
+            </span>
+          </li>
+
+          <li class="nav-item">
+            <%= link_to 'Editar cuenta', edit_user_registration_path, class: "nav-link small" %>
+          </li>
+
+          <li class="nav-item">
+            <%= link_to 'Cerrar sesion', destroy_user_session_path, method: :delete, class: "nav-link small" %>
+          </li>
+
+        <% else %>
+
+          <li class="nav-item">
+            <%= link_to'Iniciar sesion', new_user_session_path, class: "nav-link" %>
+          </li>
+
+          <li class="nav-item">
+            <%= link_to'Registrarse', new_user_registration_path, class: "nav-link" %>
+          </li>
+
+        <% end %>
+
+      </ul>
+
+    </div>
+  </div>
+
 </nav>
     

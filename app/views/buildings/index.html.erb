@@ -2,8 +2,10 @@
 
 <h1>Edificios</h1>
 
+<%= link_to 'Nuevo Edificio', new_building_path, class:"btn btn-success mb-3" %>
+
 <table class="table">
-  <thead>
+  <thead class="thead-light">
     <tr>
       <th></th>
       <th>Nombre</th>
@@ -30,5 +32,3 @@
 </table>
 
 <br>
-
-<%= link_to 'Nuevo Edificio', new_building_path, class:"btn btn-success" %>

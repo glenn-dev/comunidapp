@@ -2,8 +2,10 @@
 
 <h1>Comunicados</h1>
 
+<%= link_to 'Nuevo comunicado', new_communication_path, class:"btn btn-success mb-3" %>
+
 <table class="table">
-  <thead>
+  <thead class="thead-light">
     <tr>
       <th>Numero</th>
       <th>Titulo</th>
@@ -40,5 +42,3 @@
 </table>
 
 <br>
-
-<%= link_to 'Nuevo comunicado', new_communication_path, class:"btn btn-success" %>

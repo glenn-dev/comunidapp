@@ -3,7 +3,7 @@
 class Users::RegistrationsController < Devise::RegistrationsController
   before_action :configure_sign_up_params, only: [:create]
   before_action :configure_account_update_params, only: [:update]
-  before_action :set_user_type, only: [:new, :edit]
+  before_action :set_user_type, only: [:new, :edit, :create, :update]
   before_action :set_department, only: [:new, :edit, :create, :update]
 
   # GET /resource/sign_up

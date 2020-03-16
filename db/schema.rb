@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_16_134934) do
+ActiveRecord::Schema.define(version: 2020_03_16_165218) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -46,6 +46,8 @@ ActiveRecord::Schema.define(version: 2020_03_16_134934) do
     t.bigint "department_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "building_id"
+    t.index ["building_id"], name: "index_bills_on_building_id"
     t.index ["department_id"], name: "index_bills_on_department_id"
   end
 
@@ -134,6 +136,7 @@ ActiveRecord::Schema.define(version: 2020_03_16_134934) do
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "bills", "buildings"
   add_foreign_key "bills", "departments"
   add_foreign_key "communications", "buildings"
   add_foreign_key "departments", "buildings"

@@ -8,5 +8,5 @@ class User < ApplicationRecord
   belongs_to :user_type
 
   validates :name, :phone, :email, :department_id, presence: true
-
+  validates :email, uniqueness: true
 end

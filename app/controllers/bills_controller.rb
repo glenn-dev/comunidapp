@@ -3,6 +3,8 @@ class BillsController < ApplicationController
   # before_action :set_expenses_detail, only: [:show, :edit, :update, :destroy]
   before_action :set_concepts_array, only: [:new, :edit, :create]
   before_action :set_departments_array, only: [:new, :edit, :create]
+  before_action :set_building_to_bill, only: [:new, :edit, :create]
+  before_action :set_last_bill, only: [:new, :edit, :create]
 
 
   # GET /bills
@@ -49,6 +51,7 @@ class BillsController < ApplicationController
   def update
     respond_to do |format|
       if @bill.update(bill_params)
+        byebug
         format.html { redirect_to @bill, notice: 'Bill was successfully updated.' }
         format.json { render :show, status: :ok, location: @bill }
       else
@@ -76,7 +79,7 @@ class BillsController < ApplicationController
 
      # Only allow a list of trusted parameters through.
     def bill_params
-      params.require(:bill).permit(:num_bill, :issue_date, :status, :bill_doc, :voucher_doc, :department_id, expenses_details_attributes: [:amount, :concept_id, :id, :_destroy ])
+      params.require(:bill).permit(:num_bill, :issue_date, :status, :bill_doc, :paid_doc, :department_id, :building_id, expenses_details_attributes: [:amount, :concept_id, :id, :_destroy ])
     end
 
     def set_concepts_array
@@ -85,5 +88,14 @@ class BillsController < ApplicationController
 
     def set_departments_array
       @department_array = Department.order(:num_dep).pluck(:num_dep, :id)
+    end
+
+    # Trae el edificio que ccorresponde
+    def set_building_to_bill
+      @building = Building.find(current_user.building_id)
+    end
+
+    def set_last_bill
+      @last_bill = Bill.all[-1]
     end
 end

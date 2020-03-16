@@ -2,6 +2,7 @@ class ApplicationController < ActionController::Base
     before_action :configure_permitted_parameters, if: :devise_controller?
     before_action :set_building, only: [:new, :edit, :create]
     before_action :set_department, only: [:new, :edit, :create]
+    before_action :set_concepts_array, only: [:new, :edit, :create]
     before_action :authenticate_user!
   protected
 
@@ -17,6 +18,10 @@ class ApplicationController < ActionController::Base
 
   def set_department
     @department_array = Department.order(:num_dep).pluck(:num_dep, :id)
+  end
+
+  def set_concepts_array
+    @concept_array = Concept.order(:name).pluck(:name, :id)
   end
 
 end

@@ -8,8 +8,8 @@
     <% else %>
       <td class="align-middle">Sin documento</td>
     <% end %>
-    <% if bill.voucher_doc.attached? %>
-      <td class="align-middle"><%= image_tag bill.voucher_doc %></td>
+    <% if bill.paid_doc.attached? %>
+      <td class="align-middle"><%= image_tag bill.paid_doc %></td>
     <% else %>
       <td class="align-middle">Sin voucher</td>
     <% end %>

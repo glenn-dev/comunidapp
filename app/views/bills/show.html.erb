@@ -31,8 +31,8 @@
 
 <p>
   <strong>Voucher de pago:</strong>
-  <% if @bill.voucher_doc.attached? %>
-    <td><%= image_tag @bill.voucher_doc %></td>
+  <% if @bill.paid_doc.attached? %>
+    <td><%= image_tag @bill.paid_doc %></td>
   <% else %>
     <p>No existe documento</p>
   <% end %>

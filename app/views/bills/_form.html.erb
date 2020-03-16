@@ -8,7 +8,17 @@
           <div class="input-group-prepend">
             <span class="input-group-text">Num. Boleta</span>
           </div>
-          <%= form.text_field :num_bill, class:"form-control" %>
+          <%= form.text_field :num_bill, :value => @last_bill.num_bill, class:"form-control" %>
+        </div>
+      </div>
+
+
+      <div class="form-group">
+        <div class="input-group">
+          <div class="input-group-prepend">
+            <span class="input-group-text">Edificio</span>
+          </div>
+          <%= form.text_field :num_bill, :value => @building.name, :disabled => true, class:"form-control" %>
         </div>
       </div>
 
@@ -36,7 +46,17 @@
       </div>
     </div>
 
-    <div class="col-md-3 ml-5">
+    <div class="col-md-5">
+
+      <div class="form-group">
+        <div class="input-group">
+          <div class="input-group-prepend">
+            <span class="input-group-text">Gasto general</span>
+          </div>
+          <%= form.text_field :amount, :value => 12345, :disabled => true, class:"form-control" %>
+        </div>
+      </div>
+
       <div class="form-group">
         <%= form.label :bill_doc, "Boleta" %>
         <br>
@@ -44,10 +64,11 @@
       </div>
     
       <div class="form-group">
-        <%= form.label :voucher_doc, "Voucher de Pago" %>
+        <%= form.label :paid_doc, "Voucher de Pago" %>
         <br>
-        <%= form.file_field :voucher_doc %>
+        <%= form.file_field :paid_doc %>
       </div>
+
     </div>
 
   </div>

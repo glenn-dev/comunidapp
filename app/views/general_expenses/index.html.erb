@@ -1,0 +1,33 @@
+<p id="notice"><%= notice %></p>
+
+<h1>General Expenses</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Amount</th>
+      <th>Status</th>
+      <th>Concept</th>
+      <th>Building</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @general_expenses.each do |general_expense| %>
+      <tr>
+        <td><%= general_expense.amount %></td>
+        <td><%= general_expense.status %></td>
+        <td><%= general_expense.concept %></td>
+        <td><%= general_expense.building %></td>
+        <td><%= link_to 'Show', general_expense %></td>
+        <td><%= link_to 'Edit', edit_general_expense_path(general_expense) %></td>
+        <td><%= link_to 'Destroy', general_expense, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New General Expense', new_general_expense_path %>

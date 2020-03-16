@@ -1,0 +1,38 @@
+<%= form_with(model: general_expense, local: true) do |form| %>
+  <% if general_expense.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(general_expense.errors.count, "error") %> prohibited this general_expense from being saved:</h2>
+
+      <ul>
+      <% general_expense.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :amount %>
+    <%= form.text_field :amount %>
+  </div>
+
+  <div class="field">
+    <%= form.label :status %>
+    <%= form.check_box :status %>
+  </div>
+
+  <div class="field">
+    <%= form.label :concept_id %>
+    <%= form.select(:concept_id, options_for_select(@concept_array), prompt: 'Seleccione concepto') %>
+  </div>
+
+  <div class="field">
+    <%= form.label :building_id %>
+    <%= form.select(:building_id, options_for_select(@building_array), prompt: 'Seleccione edificio') %>
+
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

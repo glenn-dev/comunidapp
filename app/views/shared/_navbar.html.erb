@@ -26,7 +26,8 @@
               Gastos
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <%= link_to 'Detalle de gastos', expenses_details_path, class: "dropdown-item" %>
+              <%= link_to 'Gastos generales', general_expenses_path, class: "dropdown-item" %>
+              <%= link_to 'Gastos particulares', expenses_details_path, class: "dropdown-item" %>
               <div class="dropdown-divider"></div>
               <%= link_to 'Conceptos', concepts_path, class: "dropdown-item" %>
             </div>

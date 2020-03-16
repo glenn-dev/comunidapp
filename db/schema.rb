@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_09_200458) do
+ActiveRecord::Schema.define(version: 2020_03_16_134934) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -98,6 +98,17 @@ ActiveRecord::Schema.define(version: 2020_03_09_200458) do
     t.index ["concept_id"], name: "index_expenses_details_on_concept_id"
   end
 
+  create_table "general_expenses", force: :cascade do |t|
+    t.float "amount"
+    t.boolean "status"
+    t.bigint "concept_id"
+    t.bigint "building_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["building_id"], name: "index_general_expenses_on_building_id"
+    t.index ["concept_id"], name: "index_general_expenses_on_concept_id"
+  end
+
   create_table "user_types", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
@@ -128,5 +139,7 @@ ActiveRecord::Schema.define(version: 2020_03_09_200458) do
   add_foreign_key "departments", "buildings"
   add_foreign_key "expenses_details", "bills"
   add_foreign_key "expenses_details", "concepts"
+  add_foreign_key "general_expenses", "buildings"
+  add_foreign_key "general_expenses", "concepts"
   add_foreign_key "users", "user_types"
 end

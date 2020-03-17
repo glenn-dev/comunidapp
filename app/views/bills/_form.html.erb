@@ -8,7 +8,7 @@
           <div class="input-group-prepend">
             <span class="input-group-text">Num. Boleta</span>
           </div>
-          <%= form.text_field :num_bill, :value => @last_bill.num_bill, class:"form-control" %>
+          <%= form.text_field :num_bill, :value => @last_bill, class:"form-control" %>
         </div>
       </div>
 
@@ -85,7 +85,7 @@
       </thead>
       <tbody>
         <%= render 'bills/expenses/expenses_fields', expenses_form: expenses_form %>
-        <td>
+        <td class="expenses_detail_td">
           <%= add_expenses_detail_button(form) %>
         </td>
       </tbody>

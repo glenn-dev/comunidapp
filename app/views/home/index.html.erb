@@ -1,6 +1,7 @@
 <%= current_user ? "Hola #{current_user.name}" : "Bienvenido!" %>
 <br>
 
+<h1>Aqui va un home bien chevere!</h1>
 <% if current_user %>
   <%= link_to 'Cerrar sesion', destroy_user_session_path, method: :delete %>
 <% else %>

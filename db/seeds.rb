@@ -15,7 +15,6 @@ UserType.destroy_all
 Communication.destroy_all
 Concept.destroy_all
 
-
 sup = UserType.create(name: "SuperAdmin")
 adm = UserType.create(name: "Admin")
 pro = UserType.create(name: "Propietario")
@@ -26,23 +25,28 @@ base = Department.create(num_dep: "Base", floor: "piso_base", defaulting: false,
 User.create(name: "Glenn", email: "glenn.marcano90@gmail.com", password: "123456", phone: "23456789", building_id: corp.id, department_id: base.id, user_type_id: sup.id)
 
 5.times do |i|
-  building = Building.create(name: "Building_#{i}", address: "Address_building_#{i}")
-  office = Department.create(num_dep: "Oficina edificio #{i}", floor: "1", defaulting: false, habitability: true, building_id: building.id, collection: 0)
-  User.create(name: "Admin_#{i}", email: "admin#{i}@gmail.com", password: "123456", phone: "23456789", building_id: building.id, department_id: office.id, user_type_id: adm.id)
+  building = Building.create(name: "Building_#{i + 1}", address: "Address_building_#{i + 1}")
+  office = Department.create(num_dep: "Oficina edificio #{i + 1}", floor: "1", defaulting: false, habitability: true, building_id: building.id, collection: 0)
+  User.create(name: "Admin_#{i + 1}", email: "admin#{i + 1}@gmail.com", password: "123456", phone: "23456789", building_id: building.id, department_id: office.id, user_type_id: adm.id)
   
   10.times do |j|
-    department = Department.create(num_dep: "#{i}#{j}", floor: "#{j}#{i}", defaulting: false, habitability: true, building_id: building.id, collection: 0.1)
+    department = Department.create(num_dep: "#{i}#{j + 1}", floor: "#{j}#{i +1}", defaulting: false, habitability: true, building_id: building.id, collection: 0.1)
     concept = Concept.create(name: "Concept_#{i}#{j}")
-    Communication.create(num_release: "#{i}#{j}", title: "Title_#{i}#{j}", content: "Communication_content_#{i}#{j}", status: true, building_id: building.id)
-    User.create(name: "user_name_#{i}#{j}", email: "mail#{i}#{j}@gmail.com", password: "123456", phone: "23456789", building_id: building.id, department_id: department.id, user_type_id: res.id)
+    Communication.create(num_release: "#{i}#{j + 1}", title: "Title_#{i}#{j + 1}", content: "Communication_content_#{i}#{j + 1}", status: true, building_id: building.id)
+    User.create(name: "user_name_#{i}#{j + 1}", email: "mail#{i}#{j + 1}@gmail.com", password: "123456", phone: "23456789", building_id: building.id, department_id: department.id, user_type_id: res.id)
     GeneralExpense.create(amount: 500000, status: true, concept_id: concept.id, building_id: building.id)
-    5.times do |k|
-      bill_true = Bill.create(num_bill: "#{i}#{j}#{k}", total: 100000, status: true, department_id: department.id, building_id: building.id)
-      bill_false = Bill.create(num_bill: "#{i}#{j}#{k + 20}", total: 100000, status: false, department_id: department.id, building_id: building.id)
+    
+    3.times do |k|
+      bill_true = Bill.create(num_bill: "#{i}#{j}#{k + 1}", total: 100000, status: true, department_id: department.id, building_id: building.id)
+      bill_false = Bill.create(num_bill: "#{i}#{j}#{k + 21}", total: 100000, status: false, department_id: department.id, building_id: building.id)
+      
       5.times do |l|
         ExpensesDetail.create(amount: 50000, concept_id: concept.id, bill_id: bill_true.id, expenses_type: true)
         ExpensesDetail.create(amount: 50000, concept_id: concept.id, bill_id: bill_false.id, expenses_type: true)
       end
+
     end
+
   end
+  
 end

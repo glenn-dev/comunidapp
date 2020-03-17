@@ -10,8 +10,7 @@ class BillsController < ApplicationController
   # GET /bills
   # GET /bills.json
   def index
-    @bills = Bill.all
-    @expenses_details = ExpensesDetail.all
+    @bills = Bill.order(:num_bill)
   end
 
   # GET /bills/1
@@ -33,7 +32,6 @@ class BillsController < ApplicationController
   # POST /bills.json
   def create
     @bill = Bill.new(bill_params)
-    byebug
     respond_to do |format|
       if @bill.save
         format.html { redirect_to @bill, notice: 'Bill was successfully created.' }
@@ -96,6 +94,7 @@ class BillsController < ApplicationController
     end
 
     def set_last_bill
-      @last_bill = Bill.all[-1]
+      @last_bill = Bill.all[+1]
+      @last_bill = @last_bill.num_bill.to_i + 1
     end
 end

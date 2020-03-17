@@ -7,35 +7,35 @@
 <table class="table">
   <thead class="thead-light">
     <tr>
-      <th>Numero</th>
-      <th>Deuda</th>
-      <th>Habitabilidad</th>
-      <th>Recaudacion</th>
-      <th>Edificio</th>
-      <th>Piso</th>
+      <th class="align-middle text-center">Numero</th>
+      <th class="align-middle text-center">Deuda</th>
+      <th class="align-middle text-center">Habitabilidad</th>
+      <th class="align-middle text-center">Recaudacion</th>
+      <th class="align-middle text-center">Edificio</th>
+      <th class="align-middle text-center">Piso</th>
       <th colspan="2"></th>
     </tr>
   </thead>
-
+    
   <tbody>
     <% @departments.each do |department| %>
       <tr>
-        <td class="align-middle"><%= link_to "#{department.num_dep}", department, class:'btn btn-outline-primary btn-sm btn-block' %></td>
+        <td class="align-middle text-center"><%= link_to "#{department.num_dep}", department, class:'btn btn-outline-primary btn-sm btn-block' %></td>
         <% if department.defaulting %>
-          <td class="align-middle"><%= link_to "Ver boleta", @bills, class:'btn btn-outline-danger btn-sm btn-block' %></td>
+          <td class="align-middle text-center"><%= link_to "Ver boleta", @bills, class:'btn btn-outline-danger btn-sm btn-block' %></td>
         <% else %>
-          <td class="align-middle">Solvente</td>
+          <td class="align-middle text-center"><i class="far fa-check-circle fa-2x"></td>
         <% end %>
         <% if department.habitability %>
-          <td class="align-middle">Habitable</td>
+          <td class="align-middle text-center"><i class="far fa-check-circle fa-2x"></td>
         <% else %>
-          <td class="align-middle">No disponible</td>
+          <td class="align-middle text-center"><i class="far fa-times-circle fa-2x"></td>
         <% end %>
-        <td class="align-middle"><%= department.collection %></td>
-        <td class="align-middle"><%= department.building.name %></td>
-        <td class="align-middle"><%= department.floor %></td>
-        <td class="align-middle"><%= link_to 'Edit', edit_department_path(department), class:'btn btn-outline-info btn-sm' %></td>
-        <td class="align-middle"><%= link_to 'Destroy', department, method: :delete, data: { confirm: 'Are you sure?' }, class:'btn btn-outline-danger btn-sm' %></td>
+        <td class="align-middle text-center"><%= department.collection %></td>
+        <td class="align-middle text-center"><%= department.building.name %></td>
+        <td class="align-middle text-center"><%= department.floor %></td>
+        <td class="align-middle text-center"><%= link_to 'Edit', edit_department_path(department), class:'btn btn-outline-info btn-sm' %></td>
+        <td class="align-middle text-center"><%= link_to 'Destroy', department, method: :delete, data: { confirm: 'Are you sure?' }, class:'btn btn-outline-danger btn-sm' %></td>
       </tr>
     <% end %>
   </tbody>

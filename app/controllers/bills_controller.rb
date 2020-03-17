@@ -33,6 +33,7 @@ class BillsController < ApplicationController
   # POST /bills.json
   def create
     @bill = Bill.new(bill_params)
+    byebug
     respond_to do |format|
       if @bill.save
         format.html { redirect_to @bill, notice: 'Bill was successfully created.' }
@@ -51,7 +52,6 @@ class BillsController < ApplicationController
   def update
     respond_to do |format|
       if @bill.update(bill_params)
-        byebug
         format.html { redirect_to @bill, notice: 'Bill was successfully updated.' }
         format.json { render :show, status: :ok, location: @bill }
       else

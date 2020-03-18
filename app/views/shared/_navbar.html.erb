@@ -9,9 +9,17 @@
       
         <ul class="navbar-nav mr-auto">
           
-          <li class="nav-item active">
-            <%= link_to 'Departamentos', departments_path, class: "nav-link" %>
-          </li>
+          <% if current_user.user_type_id == 1 %>
+            <li class="nav-item active">
+              <%= link_to 'Edificios', buildings_path, class: "nav-link" %>
+            </li>
+          <% end %>
+
+          <% if current_user.user_type_id == 1 || current_user.user_type_id == 2 %>
+            <li class="nav-item active">
+              <%= link_to 'Departamentos', departments_path, class: "nav-link" %>
+            </li>
+          <% end %>
           
           <li class="nav-item">
             <%= link_to 'Comunicados', communications_path, class: "nav-link" %>
@@ -21,18 +29,20 @@
               <%= link_to 'Boletas', bills_path, class: "nav-link" %>
           </li>
           
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              Gastos
-            </a>
-            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <%= link_to 'Gastos generales', general_expenses_path, class: "dropdown-item" %>
-              <%= link_to 'Gastos particulares', expenses_details_path, class: "dropdown-item" %>
-              <div class="dropdown-divider"></div>
-              <%= link_to 'Conceptos', concepts_path, class: "dropdown-item" %>
-            </div>
-          </li>
-
+          <% if current_user.user_type_id == 1 || current_user.user_type_id == 2 %>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Gastos
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <%= link_to 'Gastos generales', general_expenses_path, class: "dropdown-item" %>
+                <%= link_to 'Gastos particulares', expenses_details_path, class: "dropdown-item" %>
+                <div class="dropdown-divider"></div>
+                <%= link_to 'Conceptos', concepts_path, class: "dropdown-item" %>
+              </div>
+            </li>
+          <% end %>
+        
         </ul>
 
       <% end %>
@@ -46,7 +56,7 @@
 
           <li class="nav-item">
             <span class="navbar-text small mr-3">
-              <%= current_user ? "Hola #{current_user.name}!" : "" %>
+              <%= current_user ? "Hola #{current_user.name}!" : "Inicia sesion para continuar" %>
             </span>
           </li>
 

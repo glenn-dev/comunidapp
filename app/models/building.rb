@@ -9,4 +9,5 @@ class Building < ApplicationRecord
 
     validates :name, :address, presence: true
     validates :name, :address, uniqueness: true
+
 end

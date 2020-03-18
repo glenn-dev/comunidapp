@@ -1,5 +1,6 @@
 class CommunicationsController < ApplicationController
   before_action :set_communication, only: [:show, :edit, :update, :destroy]
+  load_and_authorize_resource
 
   # GET /communications
   # GET /communications.json
@@ -54,6 +55,7 @@ class CommunicationsController < ApplicationController
   # DELETE /communications/1
   # DELETE /communications/1.json
   def destroy
+    authorize! :destroy, @communication
     @communication.destroy
     respond_to do |format|
       format.html { redirect_to communications_url, notice: 'Communication was successfully destroyed.' }

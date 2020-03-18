@@ -10,7 +10,13 @@ class BillsController < ApplicationController
   # GET /bills
   # GET /bills.json
   def index
-    @bills = Bill.order(:num_bill)
+    if current_user.user_type_id == 1
+      @bills = Bill.order(:num_bill)
+    elsif current_user.user_type_id == 2
+      @bills = Bill.where(building_id: current_user.building_id)
+    else
+      @bills = Bill.where(department_id: current_user.department_id)
+    end
   end
 
   # GET /bills/1

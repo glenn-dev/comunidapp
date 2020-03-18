@@ -1,5 +1,6 @@
 class ExpensesDetailsController < ApplicationController
   before_action :set_expenses_detail, only: [:show, :edit, :update, :destroy]
+  load_and_authorize_resource
 
   # GET /expenses_details
   # GET /expenses_details.json

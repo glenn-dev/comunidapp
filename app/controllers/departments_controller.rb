@@ -1,10 +1,11 @@
 class DepartmentsController < ApplicationController
   before_action :set_department, only: [:show, :edit, :update, :destroy]
+  load_and_authorize_resource
 
   # GET /departments
   # GET /departments.json
   def index
-    @departments = Department.all
+    @departments = Department.where(building_id: current_user.building_id) if current_user.user_type_id >= 2
   end
 
   # GET /departments/1
@@ -23,9 +24,8 @@ class DepartmentsController < ApplicationController
 
   # POST /departments
   # POST /departments.json
-  def create
+  def create 
     @department = Department.new(department_params)
-
     respond_to do |format|
       if @department.save
         format.html { redirect_to @department, notice: 'Department was successfully created.' }
@@ -54,7 +54,7 @@ class DepartmentsController < ApplicationController
   # DELETE /departments/1
   # DELETE /departments/1.json
   def destroy
-    @department.destroy
+    @department.destroy if current_user.user_type_id = 1
     respond_to do |format|
       format.html { redirect_to departments_url, notice: 'Department was successfully destroyed.' }
       format.json { head :no_content }

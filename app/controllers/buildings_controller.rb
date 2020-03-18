@@ -1,5 +1,6 @@
 class BuildingsController < ApplicationController
   before_action :set_building, only: [:show, :edit, :update, :destroy]
+  load_and_authorize_resource
 
   # GET /buildings
   # GET /buildings.json

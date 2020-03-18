@@ -35,7 +35,11 @@
         <td class="align-middle text-center"><%= department.building.name %></td>
         <td class="align-middle text-center"><%= department.floor %></td>
         <td class="align-middle text-center"><%= link_to 'Edit', edit_department_path(department), class:'btn btn-outline-info btn-sm' %></td>
-        <td class="align-middle text-center"><%= link_to 'Destroy', department, method: :delete, data: { confirm: 'Are you sure?' }, class:'btn btn-outline-danger btn-sm' %></td>
+        
+        <% if current_user.user_type_id == 1 %>
+          <td class="align-middle text-center"><%= link_to 'Destroy', department, method: :delete, data: { confirm: 'Are you sure?' }, class:'btn btn-outline-danger btn-sm' %></td>
+        <% end %>
+        
       </tr>
     <% end %>
   </tbody>

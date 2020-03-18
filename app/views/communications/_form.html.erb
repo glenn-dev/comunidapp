@@ -38,9 +38,9 @@
         <%= form.file_field :release_doc %>
       </div>
     
-      <div class="field form-group col-md-8">
+      <div class="field d-none">
         <%= form.label :building_id %>
-        <%= form.select(:building_id, options_for_select(@building_array), prompt: 'Seleccione edificio') %>
+        <%= form.text_field :building_id, :value => @current_user.building_id %>
       </div>
     
       <div class="actions col-md-8">

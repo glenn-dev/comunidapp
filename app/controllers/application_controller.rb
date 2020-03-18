@@ -4,7 +4,7 @@ class ApplicationController < ActionController::Base
   before_action :configure_permitted_parameters, if: :devise_controller?
   before_action :set_current_user
   before_action :set_building, only: [:new, :edit, :create]
-  before_action :set_department, only: [:new, :edit, :create]
+  before_action :set_departments_array, only: [:new, :edit, :create]
   before_action :set_concepts_array, only: [:new, :edit, :create]
   before_action :authenticate_user!
     
@@ -26,12 +26,24 @@ class ApplicationController < ActionController::Base
     @building_array = Building.order(:name).pluck(:name, :id)
   end
 
-  def set_department
-    @department_array = Department.order(:num_dep).pluck(:num_dep, :id)
+  def set_departments_array
+    if current_user != nil 
+      if current_user.user_type_id == 1
+        @department_array = Department.order(:num_dep).pluck(:num_dep, :id)
+      else
+        @department_array = Department.where(building_id: current_user.building_id).pluck(:num_dep, :id)
+      end
+    end
   end
 
   def set_concepts_array
-    @concept_array = Concept.order(:name).pluck(:name, :id)
+    if current_user != nil 
+      if current_user.user_type_id == 1
+        @concept_array = Concept.order(:name).pluck(:name, :id)
+      else
+        @concept_array = Concept.where(building_id: current_user.building_id).pluck(:name, :id)
+      end
+    end
   end
 
 end

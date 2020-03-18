@@ -6,7 +6,11 @@ class GeneralExpensesController < ApplicationController
   # GET /general_expenses
   # GET /general_expenses.json
   def index
-    @general_expenses = GeneralExpense.all
+    if current_user.user_type_id == 1
+      @general_expenses = GeneralExpense.all
+    else
+      @general_expenses = GeneralExpense.where(building_id: current_user.building_id)    
+    end
   end
 
   # GET /general_expenses/1
@@ -67,10 +71,6 @@ class GeneralExpensesController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_general_expense
       @general_expense = GeneralExpense.find(params[:id])
-    end
-
-    def set_concepts_array
-      @concept_array = Concept.order(:name).pluck(:name, :id)
     end
     
     # Only allow a list of trusted parameters through.

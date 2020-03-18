@@ -70,6 +70,6 @@ class ConceptsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def concept_params
-      params.require(:concept).permit(:name)
+      params.require(:concept).permit(:name, :building_id)
     end
 end

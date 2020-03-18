@@ -4,21 +4,25 @@
     <td class="align-middle text-center"><%= bill.building.name %></td>
     <td class="align-middle text-center"><%= bill.created_at %></td>
     <td class="align-middle text-center"><%= bill.total %></td>
+
     <% if bill.status %>
       <td class="align-middle text-center"><i class="far fa-check-circle fa-2x"></i></td>
     <% else %>
       <td class="align-middle text-center"><i class="far fa-times-circle fa-2x"></i></td>
     <% end %>
+
     <% if bill.bill_doc.attached? %>
       <td class="align-middle text-center"><%= image_tag bill.bill_doc %></td>
     <% else %>
       <td class="align-middle text-center">Sin documento</td>
     <% end %>
+
     <% if bill.paid_doc.attached? %>
       <td class="align-middle text-center"><%= image_tag bill.paid_doc %></td>
     <% else %>
       <td class="align-middle text-center">Sin voucher</td>
     <% end %>
+    
     <td class="align-middle"><%= link_to 'Edit', edit_bill_path(bill), class:'btn btn-outline-info btn-sm' %></td>
     <td class="align-middle"><%= link_to 'Destroy', bill, method: :delete, data: { confirm: 'Are you sure?' }, class:'btn btn-outline-danger btn-sm' %></td>
 </tr>

@@ -70,6 +70,6 @@ class ExpensesDetailsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def expenses_detail_params
-      params.require(:expenses_detail).permit(:amount, :bill_id, :concept_id)
+      params.require(:expenses_detail).permit(:amount, :bill_id, :concept_id, :building_id)
     end
 end

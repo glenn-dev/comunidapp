@@ -17,7 +17,7 @@
           <div class="input-group-prepend">
             <span class="input-group-text">Edificio</span>
           </div>
-          <%= form.text_field :building_id, :value => @building.id, class:"form-control" %>
+          <%= form.text_field :building_id, :value => current_user.building_id, class:"form-control" %>
         </div>
       </div>
 

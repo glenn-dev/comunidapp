@@ -83,7 +83,7 @@ class BillsController < ApplicationController
 
      # Only allow a list of trusted parameters through.
     def bill_params
-      params.require(:bill).permit(:num_bill, :issue_date, :status, :bill_doc, :paid_doc, :department_id, :building_id, expenses_details_attributes: [:amount, :concept_id, :id, :_destroy ])
+      params.require(:bill).permit(:num_bill, :issue_date, :status, :bill_doc, :paid_doc, :department_id, :building_id, expenses_details_attributes: [:amount, :concept_id, :id, :building_id, :_destroy ])
     end
 
     def set_concepts_array

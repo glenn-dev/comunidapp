@@ -31,7 +31,7 @@
           <div class="input-group-prepend">
             <span class="input-group-text">Departamento</span>
           </div>
-          <%= form.select(:department_id, options_for_select(@department_array), prompt: 'Departamento') %>
+          <%= form.select(:department_id, options_for_select(@department_array, selected: form.object.department_id), prompt: 'Departamento') %>
         </div>
       </div>
 

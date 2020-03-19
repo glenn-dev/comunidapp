@@ -5,16 +5,17 @@ class BillsController < ApplicationController
   # before_action :set_departments_array, only: [:new, :edit, :create]
   before_action :set_last_bill, only: [:new, :create]
   before_action :set_general_expenses, only: [:new, :create, :edit, :update]
+  before_action :set_total_bill, only: [:create]
 
   # GET /bills
   # GET /bills.json
   def index
     if current_user.user_type_id == 1
-      @bills = Bill.order(:created_at)
+      @bills = Bill.order(created_at: :desc)
     elsif current_user.user_type_id == 2
-      @bills = Bill.where(building_id: current_user.building_id).order(:created_at)
+      @bills = Bill.where(building_id: current_user.building_id).order(created_at: :desc)
     else
-      @bills = Bill.where(department_id: current_user.department_id).order(:created_at)
+      @bills = Bill.where(department_id: current_user.department_id).order(created_at: :desc)
     end
   end
 
@@ -37,6 +38,8 @@ class BillsController < ApplicationController
   # POST /bills.json
   def create
     @bill = Bill.new(bill_params)
+    # Set total to current bill
+    @bill.update(total: set_total_bill(@bill))
     respond_to do |format|
       if @bill.save
         format.html { redirect_to @bill, notice: 'Bill was successfully created.' }
@@ -84,16 +87,23 @@ class BillsController < ApplicationController
 
      # Only allow a list of trusted parameters through.
     def bill_params
-      params.require(:bill).permit(:num_bill, :issue_date, :status, :bill_doc, :paid_doc, :department_id, :building_id, expenses_details_attributes: [:amount, :concept_id, :id, :building_id, :_destroy ])
+      params.require(:bill).permit(
+        :num_bill, 
+        :issue_date, 
+        :status, 
+        :bill_doc, 
+        :paid_doc, 
+        :department_id, 
+        :building_id, 
+        :total, 
+        expenses_details_attributes: [
+          :amount, 
+          :concept_id, :id, 
+          :building_id, 
+          :_destroy 
+          ]
+        )
     end
-
-    # def set_concepts_array
-    #   @concept_array = Concept.where(building_id: current_user.building_id).pluck(:name, :id)
-    # end
-
-    # def set_departments_array
-    #   @department_array = Department.order(:num_dep).pluck(:num_dep, :id)
-    # end
 
     def set_last_bill
       @last_bill = Bill.where(building_id: current_user.building_id).last
@@ -103,4 +113,20 @@ class BillsController < ApplicationController
       current_general_expense = GeneralExpense.where(["building_id = ? and created_at < ?", current_user.building_id, Time.now])
       @sum_total_month = current_general_expense.sum(&:amount)
     end
+
+    def set_total_bill(bill_p)
+      # Guarda el % de recaudacion del departamento
+      collection_bill = Department.where(department_id: bill_p.department_id).collection 
+      # Guarda los detalles de gasto de la boleta
+      total_exp_detaills = ExpensesDetail.where(bill_id: bill_p.id)
+      # Suma los detalles de gastos de las boletas y el calculo de los gastos generales por el % correspondiente al depto.
+      @total = (collection_bill * @sum_total_month) + total_exp_detaills.sum(&:amount)
+      # Guarda la boleta en cuestion en una variable
+      bill = Bill.where(id: bill_p.id, status: false)
+      # Hace el update de la boleta con el total previamente calculado.
+      bill.update_all(total: @total)
+    end
+
+      # bills = current_user.orders.where(payed: false)
+      # orders.update_all(payed: true, billing_id: billing.id)
 end

@@ -93,7 +93,6 @@ class BillsController < ApplicationController
     # end
 
     def set_last_bill
-      @last_bill = Bill.all[+1]
-      @last_bill = @last_bill.num_bill.to_i + 1
+      @last_bill = Bill.where(building_id: current_user.building_id).last
     end
 end

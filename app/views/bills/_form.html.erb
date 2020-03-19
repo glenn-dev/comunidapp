@@ -79,18 +79,14 @@
       <thead class="thead-light">
         <tr>
           <th>Monto</th>
-          <th>Concepto</th>
-          <th colspan="5"></th>
+          <th>Concepto </th>
+          <th><%= add_expenses_detail_button(form) %></th>
         </tr>
       </thead>
-      <tbody>
-        <%= render 'bills/expenses/expenses_fields', expenses_form: expenses_form %>
-        <td class="expenses_detail_td">
-          <%= add_expenses_detail_button(form) %>
-        </td>
+      <tbody class="expenses_detail_td">
+          <%= render 'bills/expenses/expenses_fields', expenses_form: expenses_form %>
       </tbody>
     </table>
-    
     <div class="container">
       <div class="row">
         <div class="col-10">

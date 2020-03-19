@@ -12,7 +12,10 @@
   <% else %>
     <td class="align-middle text-center"><i class="far fa-file-alt img-thumbnail fa-2x"></i></td>
   <% end %>
-  <td class="align-middle text-center"><%= communication.building.name %></td>
-  <td class="align-middle"><%= link_to 'Edit', edit_communication_path(communication), class:'btn btn-outline-info btn-sm' %></td>
-  <td class="align-middle"><%= link_to 'Destroy', communication, method: :delete, data: { confirm: 'Are you sure?' }, class:'btn btn-outline-danger btn-sm' %></td>
-</tr>
+  <% if current_user.user_type_id == 1 %>
+    <td class="align-middle text-center"><%= communication.building.name %></td>
+  <% elsif current_user.user_type_id == 1 || current_user.user_type_id == 2 %>
+    <td class="align-middle"><%= link_to 'Edit', edit_communication_path(communication), class:'btn btn-outline-info btn-sm' %></td>
+    <td class="align-middle"><%= link_to 'Destroy', communication, method: :delete, data: { confirm: 'Are you sure?' }, class:'btn btn-outline-danger btn-sm' %></td>
+  <% end %>
+  </tr>

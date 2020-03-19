@@ -125,8 +125,6 @@ class BillsController < ApplicationController
       end
       # Suma los detalles de gastos de las boletas y el calculo de los gastos generales por el % correspondiente al depto.
       @total = (collection_bill * @sum_total_month) + total_exp_detaills
-      debugger
-
     end
 
 end

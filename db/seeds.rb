@@ -30,19 +30,19 @@ User.create(name: "Glenn", email: "glenn.marcano90@gmail.com", password: "123456
   User.create(name: "Admin_#{i + 1}", email: "admin#{i + 1}@gmail.com", password: "123456", phone: "23456789", building_id: building.id, department_id: office.id, user_type_id: adm.id)
   
   10.times do |j|
-    department = Department.create(num_dep: "#{i}#{j + 1}", floor: "#{j}#{i +1}", defaulting: false, habitability: true, building_id: building.id, collection: 0.1)
-    concept = Concept.create(name: "Concepto #{i}#{j}", building_id: building.id )
+    department = Department.create(num_dep: "#{i}#{j + 1}", floor: "#{j + 1}", defaulting: false, habitability: true, building_id: building.id, collection: 0.1)
+    concept = Concept.create(name: "Concepto #{i}#{j + 1}", building_id: building.id )
     Communication.create(num_release: "#{i}#{j + 1}", title: "Title_#{i}#{j + 1}", content: "Contenido de la comunicacion #{i}#{j + 1}", status: true, building_id: building.id)
     User.create(name: "user_name_#{i}#{j + 1}", email: "user#{i}#{j + 1}@gmail.com", password: "123456", phone: "23456789", building_id: building.id, department_id: department.id, user_type_id: res.id)
-    GeneralExpense.create(amount: 500000, status: true, concept_id: concept.id, building_id: building.id)
+    GeneralExpense.create(amount: 100000, status: true, concept_id: concept.id, building_id: building.id)
     
     3.times do |k|
-      bill_true = Bill.create(num_bill: "#{i}#{j}#{k + 1}", total: 100000, status: true, department_id: department.id, building_id: building.id)
-      bill_false = Bill.create(num_bill: "#{i}#{j}#{k + 21}", total: 100000, status: false, department_id: department.id, building_id: building.id)
+      bill_true = Bill.create(num_bill: "#{j}#{k + 1}", total: 150000, status: true, department_id: department.id, building_id: building.id)
+      bill_false = Bill.create(num_bill: "#{j}#{k + 11}", total: 150000, status: false, department_id: department.id, building_id: building.id)
       
-      5.times do |l|
-        ExpensesDetail.create(amount: 50000, concept_id: concept.id, bill_id: bill_true.id, expenses_type: true, building_id: building.id)
-        ExpensesDetail.create(amount: 50000, concept_id: concept.id, bill_id: bill_false.id, expenses_type: true, building_id: building.id)
+      3.times do |l|
+        ExpensesDetail.create(amount: 15000, concept_id: concept.id, bill_id: bill_true.id, expenses_type: true, building_id: building.id)
+        ExpensesDetail.create(amount: 15000, concept_id: concept.id, bill_id: bill_false.id, expenses_type: true, building_id: building.id)
       end
 
     end

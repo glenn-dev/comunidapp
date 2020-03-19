@@ -1,6 +1,7 @@
 class Bill < ApplicationRecord
   belongs_to :department
   belongs_to :building
+  belongs_to :billing, optional: true
   has_many :expenses_details, dependent: :destroy
   has_one_attached :bill_doc
   has_one_attached :paid_doc

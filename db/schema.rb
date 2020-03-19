@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_18_193105) do
+ActiveRecord::Schema.define(version: 2020_03_19_042737) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -36,6 +36,17 @@ ActiveRecord::Schema.define(version: 2020_03_18_193105) do
     t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
   end
 
+  create_table "billings", force: :cascade do |t|
+    t.string "code"
+    t.string "payment_method"
+    t.decimal "amount", precision: 5, scale: 2
+    t.string "currency"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_billings_on_user_id"
+  end
+
   create_table "bills", force: :cascade do |t|
     t.string "num_bill"
     t.float "total"
@@ -47,6 +58,8 @@ ActiveRecord::Schema.define(version: 2020_03_18_193105) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "building_id"
+    t.bigint "billing_id"
+    t.index ["billing_id"], name: "index_bills_on_billing_id"
     t.index ["building_id"], name: "index_bills_on_building_id"
     t.index ["department_id"], name: "index_bills_on_department_id"
   end
@@ -142,6 +155,8 @@ ActiveRecord::Schema.define(version: 2020_03_18_193105) do
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "billings", "users"
+  add_foreign_key "bills", "billings"
   add_foreign_key "bills", "buildings"
   add_foreign_key "bills", "departments"
   add_foreign_key "communications", "buildings"

@@ -1,5 +1,11 @@
 class BillingsController < ApplicationController
 
+  # SUM ALL PENDINGS BILLS #
+  #def set_total_pp
+  #  total_bills = Bill.where(department_id: current_user.department_id, status: false)
+  #  @sum_total_bills = total_bills.sum(&:total)
+  #end
+
   def pre_pay
     bill = Bill.where(department_id: current_user.department_id, status: false)
       total_bill = []

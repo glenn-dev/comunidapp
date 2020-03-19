@@ -100,6 +100,7 @@ class BillsController < ApplicationController
     end
 
     def set_general_expenses
-      @current_general_expense = GeneralExpense.last
+      current_general_expense = GeneralExpense.where(["building_id = ? and created_at < ?", current_user.building_id, Time.now])
+      @sum_total_month = current_general_expense.sum(&:amount)
     end
 end

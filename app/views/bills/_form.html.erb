@@ -57,7 +57,7 @@
           <div class="input-group-prepend">
             <span class="input-group-text">Gasto general</span>
           </div>
-          <%= form.text_field :amount, :value => 12345, :disabled => true, class:"form-control" %>
+          <%= form.text_field :amount, :value => @current_general_expense.amount, :disabled => true, class:"form-control" %>
         </div>
       </div>
 

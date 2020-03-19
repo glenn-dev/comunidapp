@@ -4,6 +4,7 @@ class BillsController < ApplicationController
   # before_action :set_concepts_array, only: [:new, :edit, :create]
   # before_action :set_departments_array, only: [:new, :edit, :create]
   before_action :set_last_bill, only: [:new, :create]
+  before_action :set_general_expenses, only: [:new, :create, :edit, :update]
 
   # GET /bills
   # GET /bills.json
@@ -96,5 +97,9 @@ class BillsController < ApplicationController
 
     def set_last_bill
       @last_bill = Bill.where(building_id: current_user.building_id).last
+    end
+
+    def set_general_expenses
+      @current_general_expense = GeneralExpense.last
     end
 end

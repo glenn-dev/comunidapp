@@ -74,19 +74,20 @@
   </div>
   
   <!-- Expenses details form -->
-  <%= form.fields_for :expenses_details do |expenses_form| %>
-    <table class="table">
-      <thead class="thead-light">
-        <tr>
-          <th>Monto</th>
-          <th>Concepto </th>
-          <th><%= add_expenses_detail_button(form) %></th>
-        </tr>
-      </thead>
-      <tbody class="expenses_detail_td">
-          <%= render 'bills/expenses/expenses_fields', expenses_form: expenses_form %>
-      </tbody>
-    </table>
+  <table class="table">
+    <thead class="thead-light">
+      <tr>
+        <th>Monto</th>
+        <th>Concepto </th>
+        <th><%= add_expenses_detail_button(form) %></th>
+      </tr>
+    </thead>
+    <tbody class="expenses_detail_td">
+      <%= form.fields_for :expenses_details do |expenses_form| %>
+        <%= render 'bills/expenses/expenses_fields', expenses_form: expenses_form %>
+      <% end %>
+    </tbody>
+  </table>
     <div class="container">
       <div class="row">
         <div class="col-10">
@@ -97,6 +98,4 @@
         </div>
       </div>
     </div>
-    <% end %>
-  
 <% end %>

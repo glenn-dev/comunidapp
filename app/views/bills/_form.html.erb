@@ -6,13 +6,14 @@
       <div class="form-group">
         <div class="input-group">
           <div class="input-group-prepend">
-            <span class="input-group-text">Num. Boleta</span>
+            <span class="input-group-text font-weight-bold">Num. Boleta</span>
           </div>
-          <%= form.text_field :num_bill, :value => @last_bill, class:"form-control" %>
+          <%= form.label :num_bill, :value => @last_bill.num_bill.to_i + 1, class:"form-control font-weight-bold" %>
+          <%= form.text_field :num_bill, :value => @last_bill.num_bill.to_i + 1, class:"form-control font-weight-bold d-none" %>
         </div>
       </div>
 
-      <div class="form-group">
+      <div class="form-group d-none">
         <div class="input-group">
           <div class="input-group-prepend">
             <span class="input-group-text">Edificio</span>

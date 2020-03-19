@@ -10,7 +10,7 @@ class Ability
         can :manage, :all
       elsif user.user_type_id == 2
         can :manage, Communication, building_id: user.building_id
-        can [:read, :create, :update], [Department, GeneralExpense, Bill, User, ExpensesDetail, Concept], building_id: user.building_id
+        can [:read, :create, :update], [GeneralExpense, Bill, User, ExpensesDetail, Concept], building_id: user.building_id
       else
         can :read, Communication, building_id: user.building_id
         can [:read, :update], Bill, department_id: user.department_id

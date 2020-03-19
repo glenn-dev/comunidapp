@@ -10,11 +10,11 @@ class BillsController < ApplicationController
   # GET /bills.json
   def index
     if current_user.user_type_id == 1
-      @bills = Bill.order(:num_bill)
+      @bills = Bill.order(:created_at)
     elsif current_user.user_type_id == 2
-      @bills = Bill.where(building_id: current_user.building_id)
+      @bills = Bill.where(building_id: current_user.building_id).order(:created_at)
     else
-      @bills = Bill.where(department_id: current_user.department_id)
+      @bills = Bill.where(department_id: current_user.department_id).order(:created_at)
     end
   end
 

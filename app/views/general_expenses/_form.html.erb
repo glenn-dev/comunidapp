@@ -23,7 +23,7 @@
 
   <div class="field">
     <%= form.label :concept_id %>
-    <%= form.select(:concept_id, options_for_select(@concept_array), prompt: 'Seleccione concepto') %>
+    <%= form.select(:concept_id, options_for_select(@concept_array, selected: form.object.concept_id), prompt: 'Seleccione concepto') %>
   </div>
 
   <div class="field">

@@ -6,9 +6,9 @@ class CommunicationsController < ApplicationController
   # GET /communications.json
   def index
     if current_user.user_type_id == 1
-      @communications = Communication.all
+      @communications = Communication.order(created_at: :desc)
     else
-      @communications = Communication.where(building_id: current_user.building_id)    
+      @communications = Communication.where(building_id: current_user.building_id).order(created_at: :desc)
     end
   end
 

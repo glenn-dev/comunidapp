@@ -2,7 +2,7 @@
   <td class="align-middle border-0" colspan="3">
     <div class="form-group">
       <%= expenses_form.text_field :amount %>
-      <%= expenses_form.select(:concept_id, options_for_select(@concept_array), prompt: 'Seleccione concepto') %>
+      <%= expenses_form.select(:concept_id, options_for_select(@concept_array, selected: expenses_form.object.concept_id), prompt: 'Seleccione concepto') %>
     </div>
     <div class="field d-none">
       <%= expenses_form.label :building_id %>

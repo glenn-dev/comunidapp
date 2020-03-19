@@ -5,7 +5,6 @@ class BillsController < ApplicationController
   # before_action :set_departments_array, only: [:new, :edit, :create]
   before_action :set_last_bill, only: [:new, :create]
   before_action :set_general_expenses, only: [:new, :create, :edit, :update]
-  before_action :set_total_bill, only: [:create]
 
   # GET /bills
   # GET /bills.json
@@ -39,7 +38,7 @@ class BillsController < ApplicationController
   def create
     @bill = Bill.new(bill_params)
     # Set total to current bill
-    @bill.update(total: set_total_bill(@bill))
+    @bill.total = set_total_bill(bill_params)
     respond_to do |format|
       if @bill.save
         format.html { redirect_to @bill, notice: 'Bill was successfully created.' }
@@ -114,19 +113,20 @@ class BillsController < ApplicationController
       @sum_total_month = current_general_expense.sum(&:amount)
     end
 
-    def set_total_bill(bill_p)
+    def set_total_bill(bill)
       # Guarda el % de recaudacion del departamento
-      collection_bill = Department.where(department_id: bill_p.department_id).collection 
+      dep_bill = Department.where(id: bill[:department_id])
+      collection_bill = dep_bill[0].collection
       # Guarda los detalles de gasto de la boleta
-      total_exp_detaills = ExpensesDetail.where(bill_id: bill_p.id)
+      total_exp_detaills_array = bill[:expenses_details_attributes]
+      total_exp_detaills = 0
+      total_exp_detaills_array.each do |exp|
+        total_exp_detaills = total_exp_detaills + exp[1][:amount].to_i
+      end
       # Suma los detalles de gastos de las boletas y el calculo de los gastos generales por el % correspondiente al depto.
-      @total = (collection_bill * @sum_total_month) + total_exp_detaills.sum(&:amount)
-      # Guarda la boleta en cuestion en una variable
-      bill = Bill.where(id: bill_p.id, status: false)
-      # Hace el update de la boleta con el total previamente calculado.
-      bill.update_all(total: @total)
+      @total = (collection_bill * @sum_total_month) + total_exp_detaills
+      debugger
+
     end
 
-      # bills = current_user.orders.where(payed: false)
-      # orders.update_all(payed: true, billing_id: billing.id)
 end

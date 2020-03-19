@@ -10,4 +10,5 @@ class Bill < ApplicationRecord
   reject_if: -> (attributes) { attributes['amount'].blank? }
 
   validates :num_bill, :department_id, :building_id, presence: true
+  
 end

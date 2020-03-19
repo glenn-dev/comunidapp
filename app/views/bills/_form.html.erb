@@ -8,8 +8,12 @@
           <div class="input-group-prepend">
             <span class="input-group-text font-weight-bold">Num. Boleta</span>
           </div>
-          <%= form.label :num_bill, :value => @last_bill.num_bill.to_i + 1, class:"form-control font-weight-bold" %>
-          <%= form.text_field :num_bill, :value => @last_bill.num_bill.to_i + 1, class:"form-control font-weight-bold d-none" %>
+          <% if @last_bill == nil %>
+            <%= form.text_field :num_bill, class:"form-control font-weight-bold" %>
+          <% else %>
+            <%= form.label :num_bill, :value => @last_bill.num_bill.to_i + 1, class:"form-control font-weight-bold" %>
+            <%= form.text_field :num_bill, :value => @last_bill.num_bill.to_i + 1, class:"form-control font-weight-bold d-none" %>
+          <% end %>
         </div>
       </div>
 

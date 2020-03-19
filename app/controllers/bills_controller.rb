@@ -3,7 +3,7 @@ class BillsController < ApplicationController
   # before_action :set_expenses_detail, only: [:show, :edit, :update, :destroy]
   # before_action :set_concepts_array, only: [:new, :edit, :create]
   # before_action :set_departments_array, only: [:new, :edit, :create]
-  before_action :set_last_bill, only: [:new, :edit, :create]
+  before_action :set_last_bill, only: [:new, :create]
 
   # GET /bills
   # GET /bills.json
@@ -56,9 +56,11 @@ class BillsController < ApplicationController
       if @bill.update(bill_params)
         format.html { redirect_to @bill, notice: 'Bill was successfully updated.' }
         format.json { render :show, status: :ok, location: @bill }
+        format.js
       else
         format.html { render :edit }
         format.json { render json: @bill.errors, status: :unprocessable_entity }
+        format.js { render :error }
       end
     end
   end

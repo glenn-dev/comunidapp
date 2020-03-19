@@ -1,6 +1,6 @@
 module BillsHelper
     def add_expenses_detail_button(form)
-		  expenses_fields = form.fields_for(:expenses_details) do |expenses_form|
+		  expenses_fields = form.fields_for(:expenses_details, ExpensesDetail.new) do |expenses_form|
 		  	render 'bills/expenses/expenses_fields', expenses_form: expenses_form
 		  end
       html_options = {

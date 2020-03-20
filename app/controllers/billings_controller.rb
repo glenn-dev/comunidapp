@@ -1,18 +1,15 @@
 class BillingsController < ApplicationController
 
   # SUM ALL PENDINGS BILLS #
-  #def set_total_pp
-  #  total_bills = Bill.where(department_id: current_user.department_id, status: false)
-  #  @sum_total_bills = total_bills.sum(&:total)
-  #end
+  def set_total_pp
+    total_bills = Bill.where(department_id: current_user.department_id, status: false)
+    department = Department.where(id: current_user.department_id)
+    @num_current_department = department[0].num_dep
+    @sum_total_bills = total_bills.sum(&:total)
+  end
 
   def pre_pay
-    bill = Bill.where(department_id: current_user.department_id, status: false)
-      total_bill = []
-      bill.each do |b|
-        total_bill << b.total.to_i
-      end
-      total_bill.inject(:+)
+    set_total_pp
 
     payment = PayPal::SDK::REST::Payment.new(
       {
@@ -25,18 +22,17 @@ class BillingsController < ApplicationController
         transactions: [{
           :item_list => {
             :items => [{
-              :name => "item",
-              :sku => "item",
-              :price => "200",
+              :name => "Total boletas pendientes del departamento #{@num_current_department}",
+              :sku => "Deuda pendiente",
+              :price => @sum_total_bills,
               :currency => "USD",
               :quantity => 1 }]},
         amount: {
-        total: "200",
+        total: @sum_total_bills,
         currency: "USD" },
         description: "Compra desde E-commerce Rails." }]
        }
     )
-    
 
     if payment.create
       #Redirige a PayPal
@@ -54,7 +50,6 @@ class BillingsController < ApplicationController
     if paypal_payment.execute(payer_id: params[:PayerID])
 
       amount = paypal_payment.transactions.first.amount.total
-
       billing = Billing.create(
       user: current_user,
       code: paypal_payment.id,

@@ -39,7 +39,7 @@ ActiveRecord::Schema.define(version: 2020_03_19_042737) do
   create_table "billings", force: :cascade do |t|
     t.string "code"
     t.string "payment_method"
-    t.decimal "amount", precision: 5, scale: 2
+    t.decimal "amount", precision: 10, scale: 2
     t.string "currency"
     t.bigint "user_id"
     t.datetime "created_at", null: false

@@ -38,9 +38,13 @@
   position: absolute;
   top: 0;
   left: 0;
+  z-index: 1;
 }
-
+footer{
+  z-index: 0;
+}
 #home_jumbotron{
+  z-index: 2;
   background-color: #e9ecefb5;
 }
 

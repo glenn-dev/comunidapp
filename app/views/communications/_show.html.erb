@@ -32,13 +32,8 @@
 <p>
   <strong>Documento:</strong>
   <% if @communication.release_doc.attached? %>
-    <td><%= image_tag @communication.release_doc, class:"img-thumbnail img-fluid show_img" %></td>
+    <p><%= image_tag @communication.release_doc, class:"img-thumbnail img-fluid show_img" %></p>
   <% else %>
   <i class="far fa-file-alt img-thumbnail fa-4x"></i>
   <% end %>
 </p>
-
-
-
-<%= link_to 'Edit', edit_communication_path(@communication), class:'btn btn-outline-info btn-sm' %> |
-<%= link_to 'Back', communications_path, class:'btn btn-outline-danger btn-sm my-3' %>

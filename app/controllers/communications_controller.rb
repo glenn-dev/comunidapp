@@ -34,10 +34,12 @@ class CommunicationsController < ApplicationController
     respond_to do |format|
       if @communication.save
         format.html { redirect_to @communication, notice: 'Communication was successfully created.' }
-        format.json { render :show, status: :created, location: @communication }
+        format.json { render :index, status: :created, location: @communication }
+        format.js
       else
         format.html { render :new }
         format.json { render json: @communication.errors, status: :unprocessable_entity }
+        format.js { render :error }
       end
     end
   end
@@ -48,10 +50,12 @@ class CommunicationsController < ApplicationController
     respond_to do |format|
       if @communication.update(communication_params)
         format.html { redirect_to @communication, notice: 'Communication was successfully updated.' }
-        format.json { render :show, status: :ok, location: @communication }
+        format.json { render :index, status: :ok, location: @communication }
+        format.js
       else
         format.html { render :edit }
         format.json { render json: @communication.errors, status: :unprocessable_entity }
+        format.js { render :error }
       end
     end
   end

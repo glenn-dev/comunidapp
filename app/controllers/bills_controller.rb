@@ -32,7 +32,7 @@ class BillsController < ApplicationController
   end
 
   # GET /bills/1/edit
-  def edit
+  def edit 
   end
 
   # POST /bills
@@ -57,8 +57,11 @@ class BillsController < ApplicationController
   # PATCH/PUT /bills/1
   # PATCH/PUT /bills/1.json
   def update
+    params = bill_params 
+    params[:total] = set_total_bill(bill_params)
+    
     respond_to do |format|
-      if @bill.update(bill_params)
+      if @bill.update(params)
         format.html { redirect_to @bill, notice: 'Bill was successfully updated.' }
         format.json { render :show, status: :ok, location: @bill }
         format.js
@@ -133,4 +136,17 @@ class BillsController < ApplicationController
       @bills_def = Bill.where(department_id: current_user.department_id, status: false)
     end
 
+    def set_total_bill_edit(bill)
+      # Guarda el % de recaudacion del departamento
+      dep_bill = Department.where(id: bill[:department_id])
+      collection_bill = dep_bill[0].collection
+      # Guarda los detalles de gasto de la boleta
+      total_exp_detaills_array = bill[:expenses_details_attributes]
+      total_exp_detaills = 0
+      total_exp_detaills_array.each do |exp|
+        total_exp_detaills = total_exp_detaills + exp[1][:amount].to_i
+      end
+      # Suma los detalles de gastos de las boletas y el calculo de los gastos generales por el % correspondiente al depto.
+      @total_edit = (collection_bill * @sum_total_month) + total_exp_detaills
+    end
 end

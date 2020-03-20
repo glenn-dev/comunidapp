@@ -1,5 +1,5 @@
 <tr>
-    <td class="align-middle"><%= link_to "#{bill.num_bill}", bill, class:'btn btn-outline-primary btn-sm btn-block' %></td>
+    <td class="align-middle"><%= link_to "#{bill.num_bill}", bill, class:'btn btn-outline-primary btn-sm btn-block', remote: true %></td>
     <td class="align-middle text-center"><%= bill.department.num_dep %></td>
     <td class="align-middle text-center"><%= bill.building.name %></td>
     <td class="align-middle text-center"><%= bill.created_at %></td>
@@ -12,13 +12,13 @@
     <% end %>
 
     <% if bill.bill_doc.attached? %>
-      <td class="align-middle text-center"><%= image_tag bill.bill_doc %></td>
+      <td class="align-middle text-center"><%= image_tag bill.bill_doc, class: 'index_img img-thumbnail' %></td>
     <% else %>
       <td class="align-middle text-center">Sin documento</td>
     <% end %>
 
     <% if bill.paid_doc.attached? %>
-      <td class="align-middle text-center"><%= image_tag bill.paid_doc %></td>
+      <td class="align-middle text-center"><%= image_tag bill.paid_doc, class: 'index_img img-thumbnail' %></td>
     <% else %>
       <td class="align-middle text-center">Sin voucher</td>
     <% end %>

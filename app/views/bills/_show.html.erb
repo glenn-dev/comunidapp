@@ -1,0 +1,45 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Total:</strong>
+  <%= @bill.total %>
+</p>
+
+
+<p>
+  <strong>Departamento:</strong>
+  <%= @bill.department.num_dep %>
+</p>
+
+<p>
+  <strong>Fecha de emision:</strong>
+  <%= @bill.created_at %>
+</p>
+
+<p>
+  <% if @bill.status %>
+    <strong>Estado: <i class="far fa-check-circle fa-1x"></i></strong>
+  <% else %>
+    <strong>Estado: <i class="far fa-times-circle fa-1x"></i></strong>
+  <% end %>
+</p>
+
+<p>
+  <strong>Boleta:</strong>
+  <% if @bill.bill_doc.attached? %>
+    <p><%= image_tag @bill.bill_doc, class: "img-thumbnail img-fluid show_img", width:"350" %></p>
+  <% else %>
+    <label>No existe documento</label>
+  <% end %>
+</p>
+
+<p>
+  <strong>Voucher de pago:</strong>
+  <% if @bill.paid_doc.attached? %>
+    <p>
+      <%= image_tag @bill.paid_doc, class: "img-thumbnail img-fluid show_img", width:"350" %>
+    </p>
+  <% else %>
+    <label>No existe documento</label>
+  <% end %>
+</p>

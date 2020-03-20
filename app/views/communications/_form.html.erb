@@ -14,27 +14,27 @@
   <form>
     <div class="form-row">
       <div class="field form-group col-md-8">
-        <%= form.label :num_release %>
+        <%= form.label :num_release, "Numero" %>
         <%= form.text_field :num_release, class:"form-control" %>
       </div>
     
       <div class="field form-group col-md-8">
-        <%= form.label :title %>
+        <%= form.label :title, "Titulo" %>
         <%= form.text_field :title, class:"form-control" %>
       </div>
     
       <div class="field form-group col-md-8">
-        <%= form.label :content %>
+        <%= form.label :content, "Contenido" %>
         <%= form.text_field :content, class:"form-control" %>
       </div>
     
       <div class="field form-group col-md-8">
-        <%= form.label :status %>
+        <%= form.label :status, "Estado" %>
         <%= form.check_box :status %>
       </div>
     
       <div class="field form-group col-md-8">
-        <%= form.label :release_doc %>
+        <%= form.label :release_doc, "Documento" %>
         <%= form.file_field :release_doc %>
       </div>
     
@@ -44,7 +44,7 @@
       </div>
     
       <div class="actions col-md-8">
-        <%= form.submit %>
+        <%= form.submit class:"btn btn-success" %>
       </div>
     </div>
   </form>

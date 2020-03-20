@@ -1,7 +1,7 @@
 <tr>
   <td class="align-middle text-center"><%= link_to "#{communication.num_release}", communication, class:'btn btn-outline-primary btn-sm btn-block', remote: true %></td>
   <td class="align-middle text-center"><%= communication.title %></td>
-  <td class="align-middle text-center"><%= communication.created_at %>
+  <td class="align-middle text-center"><%= communication.created_at.strftime("%d-%m-%Y") %>
   <% if communication.status %>
     <td class="align-middle text-center">Vigente</td>
   <% else %>

@@ -3,6 +3,10 @@
 
     <%= link_to 'Comunidapp', root_path, class: "navbar-brand" %>
 
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    
     <div class="collapse navbar-collapse w-100 order-1 order-md-0 dual-collapse2" id="navbarSupportedContent">
       
       <% if signed_in? %>

@@ -2,7 +2,7 @@
     <td class="align-middle"><%= link_to "#{bill.num_bill}", bill, class:'btn btn-outline-primary btn-sm btn-block', remote: true %></td>
     <td class="align-middle text-center"><%= bill.department.num_dep %></td>
     <td class="align-middle text-center"><%= bill.building.name %></td>
-    <td class="align-middle text-center"><%= bill.created_at %></td>
+    <td class="align-middle text-center"><%= bill.created_at.strftime("%d-%m-%Y") %></td>
     <td class="align-middle text-center"><%= bill.total %></td>
 
     <% if bill.status %>

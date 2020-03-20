@@ -25,8 +25,6 @@
     
     <% if current_user.user_type_id == 1 || current_user.user_type_id == 2 %>
       <td class="align-middle"><%= link_to 'Edit', edit_bill_path(bill), class:'btn btn-outline-info btn-sm', 'data-remote': true %></td>
-    <% else %>
-      <td class="align-middle"><%= link_to 'Pagar', pre_pay_billings_path, class: 'btn btn-success float-right' %></td>
     <% end %>
     
     <% if current_user.user_type_id == 1 %>

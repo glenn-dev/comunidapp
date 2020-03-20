@@ -5,6 +5,8 @@ class BillsController < ApplicationController
   # before_action :set_departments_array, only: [:new, :edit, :create]
   before_action :set_last_bill, only: [:new, :create]
   before_action :set_general_expenses, only: [:new, :create, :edit, :update]
+  before_action :defaulting, only: :index
+
 
   # GET /bills
   # GET /bills.json
@@ -125,6 +127,10 @@ class BillsController < ApplicationController
       end
       # Suma los detalles de gastos de las boletas y el calculo de los gastos generales por el % correspondiente al depto.
       @total = (collection_bill * @sum_total_month) + total_exp_detaills
+    end
+
+    def defaulting
+      @bills_def = Bill.where(department_id: current_user.department_id, status: false)
     end
 
 end

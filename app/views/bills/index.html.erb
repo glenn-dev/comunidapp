@@ -1,9 +1,11 @@
 <p id="notice"><%= notice %></p>
 
-  <h1>Bills</h1>
+  <h1>Boletas</h1>
 
   <% if current_user.user_type_id == 1 || current_user.user_type_id == 2 %>
     <%= link_to 'Nueva Boleta', new_bill_path, remote: true, class:"btn btn-success mb-3" %>
+  <% elsif @bills_def != [] %>
+    <%= link_to 'Pagar', pre_pay_billings_path, class: 'btn btn-success mb-3' %>
   <% end %>
   <!-- <%#= render 'form', bill: @bill %> -->
   <table class="table">

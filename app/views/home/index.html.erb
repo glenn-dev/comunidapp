@@ -1,10 +1,22 @@
-<%= current_user ? "Hola #{current_user.name}" : "Bienvenido!" %>
-<br>
-
-<h1>Aqui va un home bien chevere!</h1>
-<% if current_user %>
-  <%= link_to 'Cerrar sesion', destroy_user_session_path, method: :delete %>
-<% else %>
-  <%= link_to'Iniciar sesion', new_user_session_path %>
-  <%= link_to'Registrarse', new_user_registration_path %>
-<% end %>
+<div id="home_car" class="carousel slide" data-ride="carousel">
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <%= image_tag 'home_bg.jpg', class:"d-block w-100" %>
+    </div>
+    <div class="carousel-item">
+      <%= image_tag 'home2_bg.jpg', class:"d-block w-100" %>
+    </div>
+    <div class="carousel-item">
+      <%= image_tag 'home3_bg.jpg', class:"d-block w-100" %>
+    </div>
+  </div>
+</div>
+<div id="home_jumbotron" class="jumbotron position-absolute">
+  <h1 class="display-4"><%= "Bienvenido #{current_user.name}!" %></h1>
+  <p class="lead">Bienvenido a Comunidapp! Manten tus gastos comunes al dia y revisa lo que ocurre en tu comunidad.</p>
+  <hr class="my-4">
+  <% if current_user.user_type_id == 3 || current_user.user_type_id == 4 %>
+    <p>Recuerda pagar tus cuentas, la comunidad la hacemos todos! :)</p>
+    <%= link_to 'Ver mis boletas', bills_path, class: "btn btn-primary btn-lg" %>
+  <% end %>
+</div>

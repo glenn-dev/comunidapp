@@ -34,8 +34,15 @@
  color: rgb(240, 39, 39);
 }
 
+#home_car{
+  position: absolute;
+  top: 0;
+  left: 0;
+}
 
-
+#home_jumbotron{
+  background-color: #e9ecefb5;
+}
 
 /* sign in FORM */
 #logreg-forms{

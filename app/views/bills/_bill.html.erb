@@ -1,8 +1,8 @@
 <tr>
     <td class="align-middle"><%= link_to "#{bill.num_bill}", bill, class:'btn btn-outline-primary btn-sm btn-block', remote: true %></td>
-    <td class="align-middle text-center"><%= bill.department.num_dep %></td>
-    <td class="align-middle text-center"><%= bill.building.name %></td>
-    <td class="align-middle text-center"><%= bill.created_at.strftime("%d-%m-%Y") %></td>
+    <td class="align-middle text-center d-none d-lg-table-cell "><%= bill.department.num_dep %></td>
+    <td class="align-middle text-center d-none d-lg-table-cell "><%= bill.building.name %></td>
+    <td class="align-middle text-center d-none d-lg-table-cell"><%= bill.created_at.strftime("%d-%m-%Y") %></td>
     <td class="align-middle text-center"><%= bill.total %></td>
 
     <% if bill.status %>
@@ -12,19 +12,19 @@
     <% end %>
 
     <% if bill.bill_doc.attached? %>
-      <td class="align-middle text-center"><%= image_tag bill.bill_doc, class: 'index_img img-thumbnail' %></td>
+      <td class="align-middle text-center d-none d-lg-table-cell"><%= image_tag bill.bill_doc, class: 'index_img img-thumbnail' %></td>
     <% else %>
-      <td class="align-middle text-center">Sin documento</td>
+      <td class="align-middle text-center d-none d-lg-table-cell">Sin documento</td>
     <% end %>
 
     <% if bill.paid_doc.attached? %>
-      <td class="align-middle text-center"><%= image_tag bill.paid_doc, class: 'index_img img-thumbnail' %></td>
+      <td class="align-middle text-center d-none d-lg-table-cell"><%= image_tag bill.paid_doc, class: 'index_img img-thumbnail' %></td>
     <% else %>
-      <td class="align-middle text-center">Sin voucher</td>
+      <td class="align-middle text-center d-none d-lg-table-cell">Sin voucher</td>
     <% end %>
     
     <% if current_user.user_type_id == 1 || current_user.user_type_id == 2 %>
-      <td class="align-middle"><%= link_to 'Edit', edit_bill_path(bill), class:'btn btn-outline-info btn-sm', 'data-remote': true %></td>
+      <td class="align-middle d-none d-lg-table-cell"><%= link_to 'Edit', edit_bill_path(bill), class:'btn btn-outline-info btn-sm', 'data-remote': true %></td>
     <% end %>
     
     <% if current_user.user_type_id == 1 %>

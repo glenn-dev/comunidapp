@@ -12,10 +12,18 @@
 
   <body>
     <%= render 'shared/navbar' %>
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
+
+   
+    <div class="pt-5">
+      <% if notice != nil %>
+        <div class="notice alert alert-primary"><%= notice %></div> 
+      <% end %>
+      <% if alert != nil %>
+        <div class="alert alert alert-primary"><%= alert %></div>
+      <% end %>
+    </div>
     
-    <div id="yield" class="mx-5">
+    <div id="yield" class="m-5">
       <%= yield %>
     </div>
 

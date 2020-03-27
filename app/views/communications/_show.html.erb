@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Numero:</strong>
+  <%= @communication.num_release %>
+</p>
+
+<p>
+  <strong>Titulo:</strong>
+  <%= @communication.title %>
+</p>
+
+<p>
+  <strong>Contenido:</strong>
+  <%= @communication.content %>
+</p>
+
+<p>
+  <strong>Estado:</strong>
+  <% if @communication.status %>
+    <td class="align-middle">Vigente</td>
+  <% else %>
+    <td class="align-middle">No vigente</td>
+  <% end %>
+</p>
+
+<p>
+  <strong>Edificio:</strong>
+  <%= @communication.building.name %>
+</p>
+
+<p>
+  <strong>Documento:</strong>
+  <% if @communication.release_doc.attached? %>
+    <p><%= image_tag @communication.release_doc, class:"img-thumbnail img-fluid show_img" %></p>
+  <% else %>
+  <i class="far fa-file-alt img-thumbnail fa-4x"></i>
+  <% end %>
+</p>

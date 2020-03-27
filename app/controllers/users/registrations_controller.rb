@@ -1,13 +1,13 @@
 # frozen_string_literal: true
 
 class Users::RegistrationsController < Devise::RegistrationsController
-  # before_action :configure_sign_up_params, only: [:create]
+  before_action :configure_sign_up_params, only: [:create]
   before_action :configure_account_update_params, only: [:update]
-  # before_action :user_type, only: [:new, :edit, :create]
+  before_action :set_user_type, only: [:new, :edit, :create, :update]
+  before_action :set_department, only: [:new, :edit, :create, :update]
 
   # GET /resource/sign_up
   def new
-    @user_type_array = UserType.order(:name).pluck(:name, :id)
     super
   end
 
@@ -27,9 +27,9 @@ class Users::RegistrationsController < Devise::RegistrationsController
   end
 
   # DELETE /resource
-  # def destroy
-  #   super
-  # end
+  def destroy
+    super
+  end
 
   # GET /resource/cancel
   # Forces the session data which is usually expired after sign
@@ -42,19 +42,23 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   protected
 
-  # If you have extra params to permit, append them to the sanitizer.
-  # def configure_sign_up_params
-  #   devise_parameter_sanitizer.permit(:sign_up, keys: [:attribute])
-  # end
-
   # Added by author (Glenn)
-  # def user_type
-  #   @user_type_array = UserType.pluck(:name, :id)
-  # end
+  def set_user_type
+    @user_type_array = UserType.order(:name).pluck(:name, :id)
+  end
+
+  def set_department
+    @department_array = Department.order(:num_dep).pluck(:num_dep, :id)
+  end
+
+  # If you have extra params to permit, append them to the sanitizer.
+  def configure_sign_up_params
+    devise_parameter_sanitizer.permit(:sign_up, keys: [:name, :phone, :user_type_id, :department_id])
+  end
 
   # If you have extra params to permit, append them to the sanitizer.
   def configure_account_update_params
-    devise_parameter_sanitizer.permit(:account_update, keys: [:name, :phone, :user_type, :department_id])
+    devise_parameter_sanitizer.permit(:account_update, keys: [:name, :phone, :user_type_id, :department_id])
   end
 
   # The path used after sign up.

@@ -1,9 +1,9 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>Name:</strong>
+  <strong>Nombre:</strong>
   <%= @concept.name %>
 </p>
 
-<%= link_to 'Edit', edit_concept_path(@concept) %> |
-<%= link_to 'Back', concepts_path %>
+<%= link_to 'Edit', edit_concept_path(@concept), class:'btn btn-outline-info btn-sm' %> |
+<%= link_to 'Back', concepts_path, class:'btn btn-outline-danger btn-sm mt-5' %>

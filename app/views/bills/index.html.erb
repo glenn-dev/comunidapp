@@ -1,47 +1,64 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Bills</h1>
+  <h1>Boletas</h1>
 
-<table class="table">
-  <thead>
-    <tr>
-      <th>Num bill</th>
-      <th>Total</th>
-      <th>Issue date</th>
-      <th>Status</th>
-      <th>Bill doc</th>
-      <th>Paid doc</th>
-      <th>Department</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @bills.each do |bill| %>
+  <% if current_user.user_type_id == 1 || current_user.user_type_id == 2 %>
+    <%= link_to 'Nueva Boleta', new_bill_path, remote: true, class:"btn btn-success mb-3" %>
+  <% elsif @bills_def != [] %>
+    <%= link_to 'Pagar', pre_pay_billings_path, class: 'btn btn-success mb-3' %>
+  <% end %>
+  <!-- <%#= render 'form', bill: @bill %> -->
+  <table class="table">
+    <thead class="thead-light">
       <tr>
-        <td><%= bill.num_bill %></td>
-        <td><%= bill.total %></td>
-        <td><%= bill.issue_date %></td>
-        <td><%= bill.status %></td>
-        <% if bill.bill_doc.attached? %>
-          <td><%= image_tag bill.bill_doc %></td>
-        <% else %>
-          <td>No existe documento</td>
-        <% end %>
-        <% if bill.voucher_doc.attached? %>
-          <td><%= image_tag bill.voucher_doc %></td>
-        <% else %>
-          <td>No existe documento</td>
-        <% end %>
-        <td><%= bill.department %></td>
-        <td><%= link_to 'Show', bill %></td>
-        <td><%= link_to 'Edit', edit_bill_path(bill) %></td>
-        <td><%= link_to 'Destroy', bill, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <th class="align-middle text-center">#</th>
+        <th class="align-middle text-center d-none d-lg-table-cell">Departamento</th>
+        <th class="align-middle text-center d-none d-lg-table-cell ">Edificio</th>
+        <th class="align-middle text-center d-none d-lg-table-cell">Fecha</th>
+        <th class="align-middle text-center">Total</th>
+        <th class="align-middle text-center">Estado</th>
+        <th class="align-middle text-center d-none d-lg-table-cell">Documento</th>
+        <th class="align-middle text-center d-none d-lg-table-cell">Voucher</th>
+        <th colspan="9"></th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
+  
+    <tbody id="bills">
+      <%= render @bills %>
+    </tbody>
+  </table>
 
-<br>
 
-<%= link_to 'New Bill', new_bill_path %>
+<!-- New Expenses Modal -->
+<div class="modal fade" id="expenses_modal" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 id="expenses_modal_title" class="modal-title" id="staticBackdropLabel">Nueva Boleta</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div id="expenses_modal_body" class="modal-body">
+      
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Show Modal -->
+<div class="modal fade" id="show_bill" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 id="show_bill_title" class="modal-title" ></h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div id="show_bill_body" class="modal-body">
+      
+      </div>
+    </div>
+  </div>
+</div>

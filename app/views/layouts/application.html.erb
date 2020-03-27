@@ -12,12 +12,22 @@
 
   <body>
     <%= render 'shared/navbar' %>
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
+
+   
+    <div class="pt-5">
+      <% if notice != nil %>
+        <div class="notice alert alert-primary"><%= notice %></div> 
+      <% end %>
+      <% if alert != nil %>
+        <div class="alert alert alert-primary"><%= alert %></div>
+      <% end %>
+    </div>
     
-    <div class="container">
+    <div id="yield" class="m-5">
       <%= yield %>
     </div>
+
+    <%= render 'shared/footer' %>
 
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>

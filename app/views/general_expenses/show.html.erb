@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Amount:</strong>
+  <%= @general_expense.amount %>
+</p>
+
+<p>
+  <strong>Status:</strong>
+  <%= @general_expense.status %>
+</p>
+
+<p>
+  <strong>Concept:</strong>
+  <%= @general_expense.concept %>
+</p>
+
+<p>
+  <strong>Building:</strong>
+  <%= @general_expense.building %>
+</p>
+
+<%= link_to 'Edit', edit_general_expense_path(@general_expense) %> |
+<%= link_to 'Back', general_expenses_path %>

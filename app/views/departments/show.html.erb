@@ -1,34 +1,41 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>Num dep:</strong>
+  <strong>Numero:</strong>
   <%= @department.num_dep %>
 </p>
 
 <p>
-  <strong>Floor:</strong>
+  <strong>Piso:</strong>
   <%= @department.floor %>
 </p>
 
 <p>
-  <strong>Defaulting:</strong>
-  <%= @department.defaulting %>
+  <strong>Deuda:</strong>
+  <% if @department.defaulting %>
+    <td class="align-middle"><%= link_to "Ver boleta", class:'btn btn-danger' %></td>
+  <% else %>
+    <td class="align-middle">Solvente</td>
+  <% end %>
+</p>
+<p>
+  <strong>Habitabilidad:</strong>
+  <% if @department.habitability %>
+    <td class="align-middle">Habitable</td>
+  <% else %>
+    <td class="align-middle">No disponible</td>
+  <% end %>
 </p>
 
 <p>
-  <strong>Habitability:</strong>
-  <%= @department.habitability %>
-</p>
-
-<p>
-  <strong>Collection:</strong>
+  <strong>Recaudacion:</strong>
   <%= @department.collection %>
 </p>
 
 <p>
-  <strong>Building:</strong>
+  <strong>Edificio:</strong>
   <%= @department.building.name %>
 </p>
 
-<%= link_to 'Edit', edit_department_path(@department) %> |
-<%= link_to 'Back', departments_path %>
+<%= link_to 'Edit', edit_department_path(@department), class:'btn btn-outline-info btn-sm' %> |
+<%= link_to 'Back', departments_path, class:'btn btn-outline-danger btn-sm' %>

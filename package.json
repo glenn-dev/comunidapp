@@ -1,5 +1,10 @@
 {
   "name": "project_beta",
   "private": true,
-  "dependencies": {}
+  "engines": {
+    "yarn": ">= 0.25.2"
+  },
+  "dependencies": {
+    "jquery": "^3.4.1"
+  }
 }

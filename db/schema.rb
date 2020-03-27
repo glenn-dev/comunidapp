@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_02_24_183957) do
+ActiveRecord::Schema.define(version: 2020_03_19_042737) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -36,6 +36,17 @@ ActiveRecord::Schema.define(version: 2020_02_24_183957) do
     t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
   end
 
+  create_table "billings", force: :cascade do |t|
+    t.string "code"
+    t.string "payment_method"
+    t.decimal "amount", precision: 10, scale: 2
+    t.string "currency"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_billings_on_user_id"
+  end
+
   create_table "bills", force: :cascade do |t|
     t.string "num_bill"
     t.float "total"
@@ -46,6 +57,10 @@ ActiveRecord::Schema.define(version: 2020_02_24_183957) do
     t.bigint "department_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "building_id"
+    t.bigint "billing_id"
+    t.index ["billing_id"], name: "index_bills_on_billing_id"
+    t.index ["building_id"], name: "index_bills_on_building_id"
     t.index ["department_id"], name: "index_bills_on_department_id"
   end
 
@@ -73,6 +88,8 @@ ActiveRecord::Schema.define(version: 2020_02_24_183957) do
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "building_id"
+    t.index ["building_id"], name: "index_concepts_on_building_id"
   end
 
   create_table "departments", force: :cascade do |t|
@@ -89,12 +106,26 @@ ActiveRecord::Schema.define(version: 2020_02_24_183957) do
 
   create_table "expenses_details", force: :cascade do |t|
     t.float "amount"
-    t.bigint "bill_id"
     t.bigint "concept_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "expenses_type"
+    t.bigint "bill_id"
+    t.bigint "building_id"
     t.index ["bill_id"], name: "index_expenses_details_on_bill_id"
+    t.index ["building_id"], name: "index_expenses_details_on_building_id"
     t.index ["concept_id"], name: "index_expenses_details_on_concept_id"
+  end
+
+  create_table "general_expenses", force: :cascade do |t|
+    t.float "amount"
+    t.boolean "status"
+    t.bigint "concept_id"
+    t.bigint "building_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["building_id"], name: "index_general_expenses_on_building_id"
+    t.index ["concept_id"], name: "index_general_expenses_on_concept_id"
   end
 
   create_table "user_types", force: :cascade do |t|
@@ -114,18 +145,28 @@ ActiveRecord::Schema.define(version: 2020_02_24_183957) do
     t.bigint "department_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "user_types_id"
+    t.bigint "user_type_id"
+    t.bigint "building_id"
+    t.index ["building_id"], name: "index_users_on_building_id"
     t.index ["department_id"], name: "index_users_on_department_id"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
-    t.index ["user_types_id"], name: "index_users_on_user_types_id"
+    t.index ["user_type_id"], name: "index_users_on_user_type_id"
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "billings", "users"
+  add_foreign_key "bills", "billings"
+  add_foreign_key "bills", "buildings"
   add_foreign_key "bills", "departments"
   add_foreign_key "communications", "buildings"
+  add_foreign_key "concepts", "buildings"
   add_foreign_key "departments", "buildings"
   add_foreign_key "expenses_details", "bills"
+  add_foreign_key "expenses_details", "buildings"
   add_foreign_key "expenses_details", "concepts"
-  add_foreign_key "users", "user_types", column: "user_types_id"
+  add_foreign_key "general_expenses", "buildings"
+  add_foreign_key "general_expenses", "concepts"
+  add_foreign_key "users", "buildings"
+  add_foreign_key "users", "user_types"
 end

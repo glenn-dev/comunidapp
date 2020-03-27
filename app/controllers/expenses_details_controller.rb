@@ -1,5 +1,6 @@
 class ExpensesDetailsController < ApplicationController
   before_action :set_expenses_detail, only: [:show, :edit, :update, :destroy]
+  load_and_authorize_resource
 
   # GET /expenses_details
   # GET /expenses_details.json
@@ -69,6 +70,6 @@ class ExpensesDetailsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def expenses_detail_params
-      params.require(:expenses_detail).permit(:amount, :bill_id, :concept_id)
+      params.require(:expenses_detail).permit(:amount, :bill_id, :concept_id, :building_id)
     end
 end

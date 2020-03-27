@@ -21,12 +21,14 @@
     <%= form.text_field :bill_id %>
   </div>
 
-  <div class="field">
+  <div class="field form-group col-md-8">
     <%= form.label :concept_id %>
-    <%= form.text_field :concept_id %>
+    <%= form.select(:concept_id, options_for_select(@concept_array), prompt: 'Seleccione concepto') %>
   </div>
 
   <div class="actions">
     <%= form.submit %>
   </div>
 <% end %>
+
+

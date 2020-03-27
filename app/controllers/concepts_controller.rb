@@ -1,10 +1,15 @@
 class ConceptsController < ApplicationController
   before_action :set_concept, only: [:show, :edit, :update, :destroy]
+  load_and_authorize_resource
 
   # GET /concepts
   # GET /concepts.json
   def index
-    @concepts = Concept.all
+    if current_user.user_type_id == 1
+      @concepts = Concept.all
+    else
+      @concepts = Concept.where(building_id: current_user.building_id)    
+    end
   end
 
   # GET /concepts/1
@@ -69,6 +74,6 @@ class ConceptsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def concept_params
-      params.require(:concept).permit(:name)
+      params.require(:concept).permit(:name, :building_id)
     end
 end

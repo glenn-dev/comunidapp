@@ -1,32 +1,45 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Departments</h1>
+<h1>Departamentos</h1>
 
-<table>
-  <thead>
+<%= link_to 'Nuevo departamento', new_department_path, class:"btn btn-success mb-3" %>
+
+<table class="table">
+  <thead class="thead-light">
     <tr>
-      <th>Num dep</th>
-      <th>Floor</th>
-      <th>Defaulting</th>
-      <th>Habitability</th>
-      <th>Collection</th>
-      <th>Building</th>
-      <th colspan="3"></th>
+      <th class="align-middle text-center">Numero</th>
+      <th class="align-middle text-center">Deuda</th>
+      <th class="align-middle text-center">Habitabilidad</th>
+      <th class="align-middle text-center">Recaudacion</th>
+      <th class="align-middle text-center">Edificio</th>
+      <th class="align-middle text-center">Piso</th>
+      <th colspan="2"></th>
     </tr>
   </thead>
-
+    
   <tbody>
     <% @departments.each do |department| %>
       <tr>
-        <td><%= department.num_dep %></td>
-        <td><%= department.floor %></td>
-        <td><%= department.defaulting %></td>
-        <td><%= department.habitability %></td>
-        <td><%= department.collection %></td>
-        <td><%= department.building.name %></td>
-        <td><%= link_to 'Show', department %></td>
-        <td><%= link_to 'Edit', edit_department_path(department) %></td>
-        <td><%= link_to 'Destroy', department, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td class="align-middle text-center"><%= link_to "#{department.num_dep}", department, class:'btn btn-outline-primary btn-sm btn-block' %></td>
+        <% if department.defaulting %>
+          <td class="align-middle text-center"><%= link_to "Ver boleta", @bills, class:'btn btn-outline-danger btn-sm btn-block' %></td>
+        <% else %>
+          <td class="align-middle text-center"><i class="far fa-check-circle fa-2x"></td>
+        <% end %>
+        <% if department.habitability %>
+          <td class="align-middle text-center"><i class="far fa-check-circle fa-2x"></td>
+        <% else %>
+          <td class="align-middle text-center"><i class="far fa-times-circle fa-2x"></td>
+        <% end %>
+        <td class="align-middle text-center"><%= department.collection %></td>
+        <td class="align-middle text-center"><%= department.building.name %></td>
+        <td class="align-middle text-center"><%= department.floor %></td>
+        <td class="align-middle text-center"><%= link_to 'Edit', edit_department_path(department), class:'btn btn-outline-info btn-sm' %></td>
+        
+        <% if current_user.user_type_id == 1 %>
+          <td class="align-middle text-center"><%= link_to 'Destroy', department, method: :delete, data: { confirm: 'Are you sure?' }, class:'btn btn-outline-danger btn-sm' %></td>
+        <% end %>
+        
       </tr>
     <% end %>
   </tbody>
@@ -34,4 +47,4 @@
 
 <br>
 
-<%= link_to 'New Department', new_department_path %>
+

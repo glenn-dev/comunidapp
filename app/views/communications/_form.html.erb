@@ -1,4 +1,4 @@
-<%= form_with(model: communication, local: true) do |form| %>
+<%= form_with(model: communication) do |form| %>
   <% if communication.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(communication.errors.count, "error") %> prohibited this communication from being saved:</h2>
@@ -11,37 +11,41 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :num_release %>
-    <%= form.number_field :num_release %>
-  </div>
-
-  <div class="field">
-    <%= form.label :title %>
-    <%= form.text_field :title %>
-  </div>
-
-  <div class="field">
-    <%= form.label :content %>
-    <%= form.text_field :content %>
-  </div>
-
-  <div class="field">
-    <%= form.label :status %>
-    <%= form.check_box :status %>
-  </div>
-
-  <div class="field">
-    <%= form.label :release_doc %>
-    <%= form.file_field :release_doc %>
-  </div>
-
-  <div class="field">
-    <%= form.label :building_id %>
-    <%= form.select(:building_id, options_for_select(@building_array), prompt: 'Seleccione edificio') %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit %>
-  </div>
+  <form>
+    <div class="form-row">
+      <div class="field form-group col-md-8">
+        <%= form.label :num_release, "Numero" %>
+        <%= form.text_field :num_release, class:"form-control" %>
+      </div>
+    
+      <div class="field form-group col-md-8">
+        <%= form.label :title, "Titulo" %>
+        <%= form.text_field :title, class:"form-control" %>
+      </div>
+    
+      <div class="field form-group col-md-8">
+        <%= form.label :content, "Contenido" %>
+        <%= form.text_field :content, class:"form-control" %>
+      </div>
+    
+      <div class="field form-group col-md-8">
+        <%= form.label :status, "Estado" %>
+        <%= form.check_box :status %>
+      </div>
+    
+      <div class="field form-group col-md-8">
+        <%= form.label :release_doc, "Documento" %>
+        <%= form.file_field :release_doc %>
+      </div>
+    
+      <div class="field d-none">
+        <%= form.label :building_id %>
+        <%= form.text_field :building_id, :value => @current_user.building_id %>
+      </div>
+    
+      <div class="actions col-md-8">
+        <%= form.submit class:"btn btn-success" %>
+      </div>
+    </div>
+  </form>
 <% end %>

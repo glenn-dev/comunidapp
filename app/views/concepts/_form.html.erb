@@ -12,11 +12,16 @@
   <% end %>
 
   <div class="field">
-    <%= form.label :name %>
+    <%= form.label :name, "Nombre" %>
     <%= form.text_field :name %>
   </div>
 
+  <div class="field d-none">
+    <%= form.label :building_id %>
+    <%= form.text_field :building_id, :value => @current_user.building_id %>
+  </div>
+
   <div class="actions">
-    <%= form.submit %>
+    <%= form.submit class:"btn btn-success" %>
   </div>
 <% end %>

@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :general_expenses
   resources :user_types
   resources :expenses_details
   resources :bills
@@ -13,6 +14,13 @@ Rails.application.routes.draw do
   resources :communications
   resources :buildings
 
-  root to: "buildings#index"
+  resources :billings, only: [] do
+    collection do
+    get 'pre_pay'
+    get 'execute'
+    end
+  end
+
+  root to: "home#index"
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

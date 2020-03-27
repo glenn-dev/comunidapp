@@ -1,10 +1,15 @@
 class CommunicationsController < ApplicationController
   before_action :set_communication, only: [:show, :edit, :update, :destroy]
+  load_and_authorize_resource
 
   # GET /communications
   # GET /communications.json
   def index
-    @communications = Communication.all
+    if current_user.user_type_id == 1
+      @communications = Communication.order(created_at: :desc)
+    else
+      @communications = Communication.where(building_id: current_user.building_id).order(created_at: :desc)
+    end
   end
 
   # GET /communications/1
@@ -29,10 +34,12 @@ class CommunicationsController < ApplicationController
     respond_to do |format|
       if @communication.save
         format.html { redirect_to @communication, notice: 'Communication was successfully created.' }
-        format.json { render :show, status: :created, location: @communication }
+        format.json { render :index, status: :created, location: @communication }
+        format.js
       else
         format.html { render :new }
         format.json { render json: @communication.errors, status: :unprocessable_entity }
+        format.js { render :error }
       end
     end
   end
@@ -43,10 +50,12 @@ class CommunicationsController < ApplicationController
     respond_to do |format|
       if @communication.update(communication_params)
         format.html { redirect_to @communication, notice: 'Communication was successfully updated.' }
-        format.json { render :show, status: :ok, location: @communication }
+        format.json { render :index, status: :ok, location: @communication }
+        format.js
       else
         format.html { render :edit }
         format.json { render json: @communication.errors, status: :unprocessable_entity }
+        format.js { render :error }
       end
     end
   end
@@ -54,6 +63,7 @@ class CommunicationsController < ApplicationController
   # DELETE /communications/1
   # DELETE /communications/1.json
   def destroy
+    authorize! :destroy, @communication
     @communication.destroy
     respond_to do |format|
       format.html { redirect_to communications_url, notice: 'Communication was successfully destroyed.' }

@@ -19,8 +19,14 @@
   </div>
 
   <div class="field">
+    <%= f.label :department %><br />
+    <%= f.select :department_id, options_for_select(@department_array), autofocus: true %>
+  </div>
+  
+  <div class="field">
     <%= f.label :user_type %><br />
-    <%= f.text_field :user_type, autofocus: true, autocomplete: "user_type" %>
+    <%= f.select :user_type_id, options_for_select(@user_type_array), autofocus: true %>
+    <!-- <%#= f.text_field :user_type, autofocus: true, autocomplete: "user_type" %> -->
   </div>
 
   <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>

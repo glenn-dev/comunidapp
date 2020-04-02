@@ -2,9 +2,7 @@
 
 # COMUNIDAPP
 
-* El proyecto es un asistente para la administracion de condominios. Consiste en 3 tipos de usuario (SuperAdmin, Admin y Usuario). Cada uno de ellos tiene acceso a ciertos recursos especificados mas adelante.
-
-* El sistema implementa una pasarela de pago mediante Paypal que permite a un usuario residente de un edificio pagar las boletas correspondientes a su departamento.
+* La version actual del sistema permite a un usuario administrador publicar comunicados y crear boletas para un condominio. A su vez, permite a un usuario residente ver comunicados de su edificio y pagar las boletas correspondientes a su departamento a través de una pasarela de pago mediante PayPal.
 
 * La aplicacion contempla un almacenamiento de datos seguro en la nube (S3) mediante AWS.
 
@@ -60,5 +58,3 @@
 
 * RESIDENTE: Usuario residente de un edificio, puede gestionar parcialmente los recursos: Comunicados y Boletas.
 * EMAIL: user01@gmail.com (Reemplace el 0 por el numero de edificio y 1 por el numero de departamento a gestionar.
-
-* CONTACTO: glenn.marcano90@gmail.com

@@ -1,5 +1,3 @@
-# README
-
 # COMUNIDAPP
 
 * La version actual del sistema permite a un usuario administrador publicar comunicados y crear boletas para un condominio. A su vez, permite a un usuario residente ver comunicados de su edificio y pagar las boletas correspondientes a su departamento a través de una pasarela de pago mediante PayPal.

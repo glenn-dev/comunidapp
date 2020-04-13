@@ -16,7 +16,7 @@
 [Tablero Trello] (https://trello.com/b/RIZueiph/g-28)
 
 * Para visualizar el landing page ingrese a:
-* [Heroku] (https://afternoon-island-22684.herokuapp.com)
+* [Heroku] (https://comunidapp-project.herokuapp.com/)
 * Puede ingresar a la aplicacion utilizando las credenciales especificadas en los PASOS PARA DESPLEGAR LA APLICACION EN SERVIDOR LOCAL.
 
 * Diagrama logico de la base de datos.

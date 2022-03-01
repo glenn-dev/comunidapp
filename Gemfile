@@ -11,7 +11,7 @@ gem 'devise'
 # Cancancan authorization library
 gem 'cancancan'
 # Image processing gem
-gem 'image_processing', '~> 1.2'
+gem 'image_processing', '~> 1.12'
 
 gem 'paypal-sdk-rest'
 
